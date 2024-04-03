@@ -6,21 +6,24 @@
         "name": "Hallow",
         "price": "2",
         "description": "Matigas",
-        "status": "Ordered"
+        "status": "Ordered",
+        "quantity": "1"
       },
       {
         "id": "3",
         "name": "Rock",
         "price": "20",
         "description": "Matigas",
-        "status": "Ordered"
+        "status": "Ordered",
+        "quantity": "1"
       },
       {
         "id": "4",
         "name": "R",
         "price": "2",
         "description": "Iphone",
-        "status": "On sale"
+        "status": "On sale",
+        "quantity": "1"
       }
     ]
   }

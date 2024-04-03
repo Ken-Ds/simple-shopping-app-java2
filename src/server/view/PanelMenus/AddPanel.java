@@ -1,4 +1,6 @@
 package server.view.PanelMenus;
+import common.SetJTable;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -15,12 +17,14 @@ public class AddPanel extends JPanel {
     private JTextField txtName = new JTextField();
     private JTextField txtPrice = new JTextField();
     private JTextField txtQuantity = new JTextField();
+    private SetJTable set = new SetJTable();
 
     public AddPanel() {
         initComponents();
     }
 
     private void initComponents() {
+        tableAddProduct.setModel(set.setTable());
 
         setBackground(new java.awt.Color(242, 242, 242));
 
@@ -86,18 +90,7 @@ public class AddPanel extends JPanel {
                                 .addContainerGap())
         );
 
-        tableAddProduct.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
-                },
-                new String [] {
-                        "Product ID", "Name", "Price", "Status", "Quantity"
-                }
-        ));
+
         scrollTable.setViewportView(tableAddProduct);
 
         GroupLayout layout = new GroupLayout(this);
@@ -119,9 +112,18 @@ public class AddPanel extends JPanel {
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {
 
     }
-
-
-
+    public String returnName(){
+        return txtName.getText();
+    }
+    public String returnPrice(){
+        return txtPrice.getText();
+    }
+    public String returnDescription(){
+        return txtDescription.getText();
+    }
+    public String returnQuantity(){
+        return txtQuantity.getText();
+    }
 
 
 }

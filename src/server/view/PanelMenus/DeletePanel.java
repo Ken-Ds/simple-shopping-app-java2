@@ -1,4 +1,6 @@
 package server.view.PanelMenus;
+import common.SetJTable;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -6,24 +8,15 @@ public class DeletePanel extends JPanel {
     private JToggleButton buttonDelete = new JToggleButton();
     private JScrollPane scrollDelete = new JScrollPane();
     private JTable tableDeleteProduct = new JTable();
+    private SetJTable set = new SetJTable();
 
     public DeletePanel() {
         initComponents();
     }
 
     private void initComponents() {
-        tableDeleteProduct.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
-                },
-                new String [] {
-                        "Product ID", "Name", "Price", "Status", "Quantity"
-                }
-        ));
+        tableDeleteProduct.setModel(set.setTable());
+
         scrollDelete.setViewportView(tableDeleteProduct);
 
         buttonDelete.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));

@@ -1,5 +1,7 @@
 package server.view.PanelMenus;
 
+import common.SetJTable;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -16,24 +18,15 @@ public class EditPanel extends JPanel {
     private JTextField txtName = new JTextField();
     private JTextField txtPrice = new JTextField();
     private JTextField txtQuantity = new JTextField();
+    private SetJTable set = new SetJTable();
 
     public EditPanel() {
         initComponents();
     }
     private void initComponents() {
         setPreferredSize(new java.awt.Dimension(763, 481));
-        tableEditProduct.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
-                },
-                new String [] {
-                        "Product ID", "Name", "Price", "Status", "Quantity"
-                }
-        ));
+        tableEditProduct.setModel(set.setTable());
+
         jScrollPane1.setViewportView(tableEditProduct);
 
         labelName.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));

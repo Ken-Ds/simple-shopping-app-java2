@@ -1,5 +1,8 @@
 package server.view.PanelMenus;
+import common.SetJTable;
+
 import javax.swing.*;
+import java.awt.*;
 
 public class ViewProductPanel extends JPanel {
     private JButton buttonViewProd = new JButton();
@@ -8,6 +11,7 @@ public class ViewProductPanel extends JPanel {
     private JPanel panelTop = new JPanel();
     private JTable tableViewProduct = new JTable();
     private JTextField txtID = new JTextField();
+    private SetJTable set = new SetJTable();
 
     public ViewProductPanel() {
         initComponents();
@@ -16,22 +20,10 @@ public class ViewProductPanel extends JPanel {
     private void initComponents() {
 
         setPreferredSize(new java.awt.Dimension(871, 483));
-
-        tableViewProduct.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
-                },
-                new String [] {
-                        "Product ID", "Name", "Price", "Status", "Quantity"
-                }
-        ));
+        tableViewProduct.setModel(set.setTable());
         jScrollPane1.setViewportView(tableViewProduct);
 
-        labelID.setFont(new java.awt.Font("Segoe UI", 0, 13));
+        labelID.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));
         labelID.setText("Product ID :");
 
         txtID.addActionListener(new java.awt.event.ActionListener() {

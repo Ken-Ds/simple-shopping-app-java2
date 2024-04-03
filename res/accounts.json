@@ -1,0 +1,35 @@
+{
+  "accounts": {
+    "account": [
+      {
+        "id": "0",
+        "username": "Freddie",
+        "password": "kahitanona",
+        "cart": {
+          "product": [
+            {
+              "id": "",
+              "name": "Rock",
+              "price": "20",
+              "description": "Matigas",
+              "status": ""
+            },
+            {
+              "id": "2",
+              "name": "Hallow",
+              "price": "2",
+              "description": "Matigas",
+              "status": ""
+            }
+          ]
+        }
+      },
+      {
+        "id": "1",
+        "username": "miguel",
+        "password": "miguel",
+        "cart": {}
+      }
+    ]
+  }
+}

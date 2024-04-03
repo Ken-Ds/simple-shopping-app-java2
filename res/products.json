@@ -1,0 +1,27 @@
+{
+  "data": {
+    "product": [
+      {
+        "id": "2",
+        "name": "Hallow",
+        "price": "2",
+        "description": "Matigas",
+        "status": "Ordered"
+      },
+      {
+        "id": "3",
+        "name": "Rock",
+        "price": "20",
+        "description": "Matigas",
+        "status": "Ordered"
+      },
+      {
+        "id": "4",
+        "name": "R",
+        "price": "2",
+        "description": "Iphone",
+        "status": "On sale"
+      }
+    ]
+  }
+}

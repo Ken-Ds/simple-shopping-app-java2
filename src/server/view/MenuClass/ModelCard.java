@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package server.view.MenuClass;
 
-/**
- *
- * @author Dell
- */
-public class Model_Card {
-
-
+public class ModelCard {
+    private String title;
+    private String values;
+    private String description;
 
 
     public String getTitle() {
@@ -39,12 +32,9 @@ public class Model_Card {
 
 
 
-    public Model_Card() {
+    public ModelCard() {
     }
 
 
-    private String title;
-    private String values;
-    private String description;
 }
 

@@ -1,21 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package server.view.Component;
 
-import server.view.MenuClass.Model_Card;
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import server.view.MenuClass.ModelCard;
 
-/**
- *
- * @author Dell
- */
-public class CardOrder extends javax.swing.JPanel {
+import java.awt.*;
+import javax.swing.*;
+
+public class CardOrder extends JPanel {
+    private JLabel labelOrder;
+    private JLabel labelValue;
 
     public Color getColor1() {
         return color1;
@@ -42,51 +34,48 @@ public class CardOrder extends javax.swing.JPanel {
         color1 = Color.ORANGE;
         color2 = Color.WHITE;
     }
-    public void setData(Model_Card data) {
+    public void setData(ModelCard data) {
 
         labelOrder.setText(data.getTitle());
         labelValue.setText(data.getValues());
 
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        labelOrder = new javax.swing.JLabel();
-        labelValue = new javax.swing.JLabel();
+        labelOrder = new JLabel();
+        labelValue = new JLabel();
 
-        labelOrder.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelOrder.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         labelOrder.setForeground(new java.awt.Color(255, 255, 255));
         labelOrder.setText("Order");
 
         labelValue.setBackground(new java.awt.Color(255, 255, 255));
-        labelValue.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelValue.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         labelValue.setForeground(new java.awt.Color(255, 255, 255));
         labelValue.setText("Values");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(labelValue)
                                         .addComponent(labelOrder))
                                 .addContainerGap(212, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
                                 .addComponent(labelOrder)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(labelValue)
                                 .addContainerGap(60, Short.MAX_VALUE))
         );
-    }// </editor-fold>
-
+    }
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
@@ -99,9 +88,4 @@ public class CardOrder extends javax.swing.JPanel {
         g2.fillOval(getWidth() - (getHeight() / 2) - 20, getHeight() / 2 + 20, getHeight(), getHeight());
         super.paintComponent(grphcs);
     }
-
-    // Variables declaration - do not modify
-    private javax.swing.JLabel labelOrder;
-    private javax.swing.JLabel labelValue;
-    // End of variables declaration
 }

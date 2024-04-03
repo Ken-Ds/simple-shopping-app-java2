@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package server.view.MenuClass;
+public class ModelMenu {
 
-/**
- *
- * @author Dell
- */
-public class Model_Menu {
-
+    private String name;
+    private MenuType type;
 
     public String getName() {
         return name;
@@ -27,20 +20,14 @@ public class Model_Menu {
         this.type = type;
     }
 
-    public Model_Menu( String name, MenuType type) {
+    public ModelMenu(String name, MenuType type) {
 
         this.name = name;
         this.type = type;
     }
 
-    public Model_Menu() {
+    public ModelMenu() {
     }
-
-
-    private String name;
-    private MenuType type;
-
-
 
     public static enum MenuType {
         TITLE, MENU, EMPTY

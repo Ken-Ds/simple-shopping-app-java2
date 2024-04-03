@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package server.view;
 
 import server.view.Component.Header;
@@ -14,24 +10,20 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
-
-    private DashboardPanel dashboard;
-    private ViewClientPanel client;
-    private AddPanel add;
-    private ViewProductPanel view;
-    private DeletePanel delete;
-    private EditPanel edit;
-
+    private DashboardPanel dashboard = new DashboardPanel();
+    private ViewClientPanel client = new ViewClientPanel();
+    private AddPanel add = new AddPanel();
+    private ViewProductPanel view = new ViewProductPanel();
+    private DeletePanel delete = new DeletePanel();
+    private EditPanel edit = new EditPanel();
+    private JPanel MainPanel = new JPanel();
+    private Header header = new Header();
+    private MainMenu menu = new MainMenu();
+    private PanelBoard panelBoard = new PanelBoard();
 
     public MainFrame() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
-        dashboard = new DashboardPanel();
-        client= new ViewClientPanel();
-        add = new AddPanel();
-        view = new ViewProductPanel();
-        delete = new DeletePanel();
-        edit = new EditPanel();
         menu.initMoving(MainFrame.this);
         menu.addEventMenuSelectedDashboard(new EventMenuSelected() {
             @Override
@@ -72,11 +64,6 @@ public class MainFrame extends JFrame {
     }
 
     private void initComponents() {
-
-        panelBoard = new PanelBoard();
-        MainPanel = new JPanel();
-        menu = new MainMenu();
-        header = new Header();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -121,8 +108,5 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    private JPanel MainPanel;
-    private Header header;
-    private MainMenu menu;
-    private PanelBoard panelBoard;
+
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package server.view.MenuClass;
 
 import server.view.Component.MenuItem;
@@ -32,9 +28,9 @@ public class ListMenu<E extends Object> extends JList<E> {
                 if (SwingUtilities.isLeftMouseButton(me)) {
                     int index = locationToIndex(me.getPoint());
                     Object o = model.getElementAt(index);
-                    if (o instanceof Model_Menu) {
-                        Model_Menu menu = (Model_Menu) o;
-                        if (menu.getType() == Model_Menu.MenuType.MENU) {
+                    if (o instanceof ModelMenu) {
+                        ModelMenu menu = (ModelMenu) o;
+                        if (menu.getType() == ModelMenu.MenuType.MENU) {
                             selectedIndex = index;
                             if (event != null) {
                                 event.selected(index);
@@ -53,9 +49,9 @@ public class ListMenu<E extends Object> extends JList<E> {
                 int index = locationToIndex(me.getPoint());
                 if (index != overIndex) {
                     Object o = model.getElementAt(index);
-                    if (o instanceof Model_Menu) {
-                        Model_Menu menu = (Model_Menu) o;
-                        if (menu.getType() == Model_Menu.MenuType.MENU) {
+                    if (o instanceof ModelMenu) {
+                        ModelMenu menu = (ModelMenu) o;
+                        if (menu.getType() == ModelMenu.MenuType.MENU) {
                             overIndex = index;
                         } else {
                             overIndex = -1;
@@ -72,24 +68,20 @@ public class ListMenu<E extends Object> extends JList<E> {
         return new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> jlist, Object o, int index, boolean selected, boolean focus) {
-                Model_Menu data;
-                if (o instanceof Model_Menu) {
-                    data = (Model_Menu) o;
+                ModelMenu data;
+                if (o instanceof ModelMenu) {
+                    data = (ModelMenu) o;
                 } else {
-                    data = new Model_Menu( o + "", Model_Menu.MenuType.EMPTY);
+                    data = new ModelMenu( o + "", ModelMenu.MenuType.EMPTY);
                 }
                 MenuItem item = new MenuItem(data);
                 item.setSelected(selectedIndex == index);
                 item.setOver(overIndex == index);
                 return item;
             }
-
         };
     }
-
-    public void addItem(Model_Menu data) {
+    public void addItem(ModelMenu data) {
         model.addElement(data);
     }
-
-
 }

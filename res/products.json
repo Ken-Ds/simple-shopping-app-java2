@@ -2,14 +2,6 @@
   "data": {
     "product": [
       {
-        "id": "2",
-        "name": "Hallow",
-        "price": "2",
-        "description": "Matigas",
-        "status": "Ordered",
-        "quantity": 1
-      },
-      {
         "id": "3",
         "name": "Rock",
         "price": "20",
@@ -24,6 +16,14 @@
         "description": "Iphone",
         "status": "On sale",
         "quantity": 1
+      },
+      {
+        "id": "5",
+        "name": "Uy",
+        "price": "1",
+        "description": "Iphone X Max",
+        "quantity": "2",
+        "status": "On Sale"
       }
     ]
   }

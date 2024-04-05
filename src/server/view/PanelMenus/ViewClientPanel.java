@@ -1,12 +1,16 @@
 package server.view.PanelMenus;
 
+import common.SetJTable;
+
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class ViewClientPanel extends JPanel {
     private JButton buttonSearch = new JButton();
     private JScrollPane jScrollPane1 = new JScrollPane();
     private JTable tableViewClient = new JTable();
+    private SetJTable set = new SetJTable();
 
     public ViewClientPanel() {
         initComponents();
@@ -14,19 +18,8 @@ public class ViewClientPanel extends JPanel {
 
     private void initComponents() {
         setBackground(new java.awt.Color(242, 242, 242));
+        tableViewClient.setModel(set.setViewClientTable());
 
-        tableViewClient.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null},
-                        {null, null},
-                        {null, null},
-                        {null, null},
-                        {null, null}
-                },
-                new String [] {
-                        "Username", "ID"
-                }
-        ));
         jScrollPane1.setViewportView(tableViewClient);
 
         buttonSearch.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));

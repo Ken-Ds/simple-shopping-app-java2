@@ -7,7 +7,7 @@
         "price": "2",
         "description": "Matigas",
         "status": "Ordered",
-        "quantity": "1"
+        "quantity": 1
       },
       {
         "id": "3",
@@ -15,7 +15,7 @@
         "price": "20",
         "description": "Matigas",
         "status": "Ordered",
-        "quantity": "1"
+        "quantity": 1
       },
       {
         "id": "4",
@@ -23,7 +23,7 @@
         "price": "2",
         "description": "Iphone",
         "status": "On sale",
-        "quantity": "1"
+        "quantity": 1
       }
     ]
   }

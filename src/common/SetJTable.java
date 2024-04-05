@@ -1,13 +1,12 @@
 package common;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.swing.table.DefaultTableModel;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -16,54 +15,49 @@ import java.util.List;
 
 public class SetJTable {
     public DefaultTableModel setTable() {
-        try {
-            // Read the Gson file
-            String content = new String(Files.readAllBytes(Paths.get("res/products.json")));
+        Gson gson = new Gson();
+        try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray productList = jsonObject.getAsJsonObject("data").getAsJsonArray("product");
 
-            // Parse the Gson file into a list of Product objects
-            Gson gson = new Gson();
-            Type type = new TypeToken<ProductData>() {
-            }.getType();
-            ProductData productData = gson.fromJson(content, type);
-            List<ProductData.Product> productList = productData.getData().getProductList();
+            String[] columnNames = {"ID", "Name", "Price", "Description", "Status", "Quantity"};
+            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
-            Object[][] mod = new Object[productList.size()][5];
-
-            for (int x = 0; x < productList.size(); x++) {
-                ProductData.Product product = productList.get(x);
-                mod[x][0] = product.getId();
-                mod[x][1] = product.getName();
-                mod[x][2] = product.getPrice();
-                mod[x][3] = product.getStatus();
-                mod[x][4] = product.getQuantity();
+            for (int i = 0; i < productList.size(); i++) {
+                JsonObject product = productList.get(i).getAsJsonObject();
+                String id = product.get("id").getAsString();
+                String name = product.get("name").getAsString();
+                String price = product.get("price").getAsString();
+                String description = product.get("description").getAsString();
+                String status = product.get("status").getAsString();
+                int quantity = product.get("quantity").getAsInt();
+                model.addRow(new Object[]{id, name, price, description, status, quantity});
             }
-
-            DefaultTableModel model = new DefaultTableModel(
-                    mod,
-                    new String[]{
-                            "Product ID", "Name", "Price", "Status", "Quantity"
-                    }
-            ) {
-                Class[] types = new Class[]{
-                        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-                };
-                boolean[] canEdit = new boolean[]{
-                        false, false, false, false, false
-                };
-
-                public Class getColumnClass(int columnIndex) {
-                    return types[columnIndex];
-                }
-
-                public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return canEdit[columnIndex];
-                }
-            };
-
             return model;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
+    }
+
+    public DefaultTableModel setViewClientTable(){
+        Gson gson = new Gson();
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("res/accounts.json"))){
+            JsonObject jsonObject = gson.fromJson(bufferedReader,JsonObject.class);
+            JsonArray accountList = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
+
+            String[] columnNames = {"Username", "ID"};
+            DefaultTableModel model = new DefaultTableModel(columnNames,0);
+            for(int x = 0; x<accountList.size(); x++){
+                JsonObject account = accountList.get(x).getAsJsonObject();
+                String username = account.get("username").getAsString();
+                String id = account.get("id").getAsString();
+                model.addRow(new Object[]{username, id});
+            }
+            return model;
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return null;
     }
 }

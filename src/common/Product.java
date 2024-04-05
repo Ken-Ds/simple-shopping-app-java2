@@ -7,8 +7,8 @@ public class Product implements Serializable {
     private String name;
     private String price;
     private String description;
-
     private String status;
+    private int quantity;
 
 
     public Product( String name, String price, String description){
@@ -17,12 +17,13 @@ public class Product implements Serializable {
         this.description =description;
     }
 
-    public Product(String id, String name, String price, String description, String status) {
+    public Product(String id, String name, String price, String description, String status, int quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description =description;
         this.status = status;
+        this.quantity = quantity;
     }
 
     public String getId() {
@@ -53,6 +54,14 @@ public class Product implements Serializable {
         this.name = name;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -61,6 +70,7 @@ public class Product implements Serializable {
                 ", price='" + price + '\'' +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
+                ", quantity='" + quantity + '\'' +
                 '}';
     }
 

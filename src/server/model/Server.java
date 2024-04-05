@@ -11,11 +11,12 @@ public class Server extends UnicastRemoteObject implements ServerInterface{
     public Server() throws RemoteException {
     }
 
-    public static void main(String[] args) {
+    public static void startServer() {
         try{
             ServerInterface serverInterface = new Server();
             Registry registry = LocateRegistry.createRegistry(1099);
             registry.rebind("midTeam4", serverInterface);
+            System.out.println("Server is Running");
 
         }catch(RemoteException ex){
             ex.printStackTrace();

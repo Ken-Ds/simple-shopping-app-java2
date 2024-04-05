@@ -9,5 +9,7 @@ public class Controller {
     public Controller(MainView mainView, MainModel mainModel){
         this.mainView = mainView;
         this.mainModel = mainModel;
+
+        mainModel.server.startServer();
     }
 }

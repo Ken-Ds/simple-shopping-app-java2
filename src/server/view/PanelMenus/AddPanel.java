@@ -25,7 +25,7 @@ public class AddPanel extends JPanel {
 
     private void initComponents() {
         tableAddProduct.setModel(set.setTable());
-
+        tableAddProduct.setEnabled(false);
         setBackground(new java.awt.Color(242, 242, 242));
 
         labelName.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));

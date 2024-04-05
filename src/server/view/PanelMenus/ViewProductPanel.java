@@ -21,6 +21,7 @@ public class ViewProductPanel extends JPanel {
 
         setPreferredSize(new java.awt.Dimension(871, 483));
         tableViewProduct.setModel(set.setTable());
+        tableViewProduct.setEnabled(false);
         jScrollPane1.setViewportView(tableViewProduct);
 
         labelID.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));

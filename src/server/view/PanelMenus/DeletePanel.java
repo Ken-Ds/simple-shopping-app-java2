@@ -2,13 +2,21 @@ package server.view.PanelMenus;
 import common.SetJTable;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import static common.SetJTable.deleteProduct;
 
 public class DeletePanel extends JPanel {
     private JToggleButton buttonDelete = new JToggleButton();
     private JScrollPane scrollDelete = new JScrollPane();
     private JTable tableDeleteProduct = new JTable();
     private SetJTable set = new SetJTable();
+    private JTextField txtId = new JTextField();
 
     public DeletePanel() {
         initComponents();
@@ -24,7 +32,11 @@ public class DeletePanel extends JPanel {
         buttonDelete.setText("Delete");
         buttonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonDeleteActionPerformed(evt);
+                String id = txtId.getText();
+                if (!id.isEmpty()) {
+                    deleteProduct(id);
+                    txtId.setText("");
+                }
             }
         });
 
@@ -36,6 +48,8 @@ public class DeletePanel extends JPanel {
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addComponent(buttonDelete, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtId, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -43,12 +57,12 @@ public class DeletePanel extends JPanel {
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(scrollDelete, GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonDelete)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(buttonDelete)
+                                        .addComponent(txtId, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())
         );
     }
-
-    private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {
-
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {
     }
 }

@@ -1,8 +1,20 @@
 package server.view.PanelMenus;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import common.SetJTable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import static common.GenerateUniqueId.generateUniqueId;
+import static common.SetJTable.addProduct;
 
 public class AddPanel extends JPanel {
     private JButton buttonEnterAdd = new JButton();
@@ -26,6 +38,20 @@ public class AddPanel extends JPanel {
     }
 
     private void initComponents() {
+        buttonEnterAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String id = generateUniqueId();
+                String name = returnName();
+                String price = returnPrice();
+                String description = returnDescription();
+                String quantity = returnQuantity();
+                String status = returnStatus();
+
+                addProduct(id, name, price, description, quantity, status);
+            }
+        });
+
         tableAddProduct.setModel(set.setTable());
         tableAddProduct.setEnabled(false);
         setBackground(new java.awt.Color(242, 242, 242));
@@ -134,6 +160,7 @@ public class AddPanel extends JPanel {
     public String returnQuantity(){
         return txtQuantity.getText();
     }
-
-
+    public String returnStatus(){
+        return txtStatus.getText();
+    }
 }

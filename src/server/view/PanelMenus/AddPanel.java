@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import common.SetJTable;
-import common.GenerateUniqueId;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
 
 import static common.GenerateUniqueId.generateUniqueId;
 import static common.SetJTable.addProduct;
@@ -43,13 +41,12 @@ public class AddPanel extends JPanel {
         buttonEnterAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-     
+                String id = generateUniqueId();
                 String name = returnName();
                 String price = returnPrice();
                 String description = returnDescription();
                 String quantity = returnQuantity();
                 String status = returnStatus();
-                String id = String.valueOf(generateUniqueId());
 
                 addProduct(id, name, price, description, quantity, status);
                 tableAddProduct.setModel(set.setTable());

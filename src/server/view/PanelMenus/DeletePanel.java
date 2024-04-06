@@ -36,6 +36,7 @@ public class DeletePanel extends JPanel {
                 if (!id.isEmpty()) {
                     deleteProduct(id);
                     txtId.setText("");
+                    tableDeleteProduct.setModel(set.setTable());
                 }
             }
         });

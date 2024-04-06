@@ -11,7 +11,7 @@
       },
       {
         "id": "4",
-        "name": "R",
+        "name": "Rdsds",
         "price": "2",
         "description": "Iphone",
         "status": "On sale",
@@ -19,27 +19,11 @@
       },
       {
         "id": "5",
-        "name": "Uy",
-        "price": "1",
-        "description": "Iphone X Max",
-        "quantity": "2",
-        "status": "On Sale"
-      },
-      {
-        "id": "6",
-        "name": "Tabble",
-        "price": "34",
-        "description": "kadfoi",
-        "quantity": "3",
-        "status": "knwfjwlf"
-      },
-      {
-        "id": "7",
-        "name": "freddie",
-        "price": "1",
-        "description": "kulot",
-        "quantity": "1",
-        "status": "On Sale"
+        "name": "rubiks",
+        "price": "25",
+        "description": "triangle",
+        "status": "On sale",
+        "quantity": 3
       }
     ]
   }

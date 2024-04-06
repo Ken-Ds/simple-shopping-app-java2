@@ -1,8 +1,15 @@
 package server.view.PanelMenus;
+import com.google.gson.JsonObject;
 import common.SetJTable;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import static common.SetJTable.searchProductByName;
 
 public class ViewProductPanel extends JPanel {
     private JButton buttonViewProd = new JButton();
@@ -18,6 +25,20 @@ public class ViewProductPanel extends JPanel {
     }
 
     private void initComponents() {
+        buttonViewProd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = returnId();
+                List<JsonObject> matchingProducts = searchProductByName(name);
+                DefaultTableModel model = (DefaultTableModel) tableViewProduct.getModel();
+                model.setRowCount(0);
+                for (JsonObject product : matchingProducts) {
+                    model.addRow(new Object[]{product.get("id").getAsString(),product.get("name").getAsString(), product.get("price").getAsString(),product.get("description").getAsString(),product.get("status").getAsString(), product.get("quantity").getAsString()});
+                }
+
+
+            }
+        });
 
         setPreferredSize(new java.awt.Dimension(871, 483));
         tableViewProduct.setModel(set.setTable());
@@ -25,7 +46,7 @@ public class ViewProductPanel extends JPanel {
         jScrollPane1.setViewportView(tableViewProduct);
 
         labelID.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));
-        labelID.setText("Product ID :");
+        labelID.setText("Name :");
 
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,5 +96,8 @@ public class ViewProductPanel extends JPanel {
         );
     }
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {
+    }
+    public String returnId(){
+        return txtID.getText();
     }
 }

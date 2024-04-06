@@ -4,6 +4,8 @@ import com.google.gson.*;
 
 import javax.swing.table.DefaultTableModel;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SetJTable {
     public DefaultTableModel setTable() {
@@ -53,7 +55,7 @@ public class SetJTable {
         return null;
     }
 
-    public static void addProduct(String id, String name, String price, String description, String quantity, String status) {
+    public static void addProduct(String id, String name, String price, String description,String status, int quantity) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
             JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
@@ -63,8 +65,8 @@ public class SetJTable {
             newProduct.addProperty("name", name);
             newProduct.addProperty("price", price);
             newProduct.addProperty("description", description);
-            newProduct.addProperty("quantity", quantity);
             newProduct.addProperty("status", status);
+            newProduct.addProperty("quantity", quantity);
             productList.add(newProduct);
             try (FileWriter writer = new FileWriter("res/products.json")) {
                 gson.toJson(jsonObject, writer);
@@ -79,14 +81,14 @@ public class SetJTable {
         }
     }
 
-    public static void deleteProduct(String id) {
+    public static void deleteProduct(String name) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
             JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
             JsonArray productList = jsonObject.getAsJsonObject("data").getAsJsonArray("product");
             for (JsonElement productElement : productList) {
                 JsonObject product = productElement.getAsJsonObject();
-                if (product.get("id").getAsString().equals(id)) {
+                if (product.get("name").getAsString().equals(name)) {
                     productList.remove(productElement);
                     break;
                 }
@@ -96,7 +98,7 @@ public class SetJTable {
             } catch (IOException e) {
                 throw new RuntimeException("Error writing to JSON file", e);
             }
-            System.out.println("Product with ID " + id + " deleted successfully.");
+            System.out.println("Product with ID " + name + " deleted successfully.");
         } catch (FileNotFoundException e) {
             throw new RuntimeException("JSON file not found", e);
         } catch (IOException e) {
@@ -104,7 +106,7 @@ public class SetJTable {
         }
     }
 
-    public static void editProduct(String id, String name, String price, String description, String quantity, String status) {
+    public static void editProduct(String id, String name, String price, String description,String status, int quantity) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
             JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
@@ -115,8 +117,8 @@ public class SetJTable {
                     product.addProperty("name", name);
                     product.addProperty("price", price);
                     product.addProperty("description", description);
-                    product.addProperty("quantity", quantity);
                     product.addProperty("status", status);
+                    product.addProperty("quantity", quantity);
                     break;
                 }
             }
@@ -132,4 +134,24 @@ public class SetJTable {
             throw new RuntimeException("Error reading/parsing JSON", e);
         }
     }
+    public static List<JsonObject> searchProductByName(String name) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<JsonObject> matchingProducts = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray productList = jsonObject.getAsJsonObject("data").getAsJsonArray("product");
+            for (JsonElement productElement : productList) {
+                JsonObject product = productElement.getAsJsonObject();
+                if (product.get("name").getAsString().equals(name)) {
+                    matchingProducts.add(product);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("JSON file not found", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading/parsing JSON", e);
+        }
+        return matchingProducts;
+    }
+
 }

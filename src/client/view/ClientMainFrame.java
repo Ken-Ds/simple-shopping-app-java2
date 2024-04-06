@@ -47,8 +47,6 @@ public class ClientMainFrame extends JFrame {
     }
 
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         panelBorder1 = new PanelBorder();

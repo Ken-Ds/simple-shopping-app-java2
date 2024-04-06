@@ -3,6 +3,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import common.Product;
 import common.SetJTable;
 
 import javax.swing.*;
@@ -13,8 +14,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import static common.GenerateUniqueId.generateUniqueId;
 import static common.SetJTable.addProduct;
+import static common.SetJTable.editProduct;
+import static common.generateId.generateUniqueId;
 
 public class AddPanel extends JPanel {
     private JButton buttonEnterAdd = new JButton();
@@ -32,7 +34,6 @@ public class AddPanel extends JPanel {
     private JTextField txtQuantity = new JTextField();
     private JTextField txtStatus = new JTextField();
     private SetJTable set = new SetJTable();
-
     public AddPanel() {
         initComponents();
     }

@@ -37,4 +37,5 @@ public class Server extends UnicastRemoteObject implements ServerInterface{
     public Product editProduct(Product editProduct) throws RemoteException {
         return null;
     }
+
 }

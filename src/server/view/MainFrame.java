@@ -44,12 +44,16 @@ public class MainFrame extends JFrame {
             public void selected(int index) {
                 if (index == 0) {
                     setForm(add);
+                    add = new AddPanel();
                 } else if (index == 1) {
                     setForm(view);
+                    view = new ViewProductPanel();
                 }  else if (index == 2) {
                     setForm(delete);
+                    delete = new DeletePanel();
                 }  else if (index == 3) {
                     setForm(edit);
+                    edit = new EditPanel();
                 }
             }
         });

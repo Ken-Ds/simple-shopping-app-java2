@@ -24,6 +24,22 @@
         "description": "Iphone X Max",
         "quantity": "2",
         "status": "On Sale"
+      },
+      {
+        "id": "6",
+        "name": "Tabble",
+        "price": "34",
+        "description": "kadfoi",
+        "quantity": "3",
+        "status": "knwfjwlf"
+      },
+      {
+        "id": "7",
+        "name": "freddie",
+        "price": "1",
+        "description": "kulot",
+        "quantity": "1",
+        "status": "On Sale"
       }
     ]
   }

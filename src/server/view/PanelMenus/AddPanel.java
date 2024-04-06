@@ -49,6 +49,7 @@ public class AddPanel extends JPanel {
                 String status = returnStatus();
 
                 addProduct(id, name, price, description, quantity, status);
+                tableAddProduct.setModel(set.setTable());
             }
         });
 
@@ -163,4 +164,5 @@ public class AddPanel extends JPanel {
     public String returnStatus(){
         return txtStatus.getText();
     }
+
 }

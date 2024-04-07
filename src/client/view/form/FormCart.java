@@ -1,5 +1,8 @@
 package client.view.form;
 
+import client.model.Connect;
+import common.Product;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -8,7 +11,7 @@ public class FormCart extends JPanel {
     private JPanel cartHeaderPanel = new JPanel();
     private JScrollPane cartScroll = new JScrollPane();
     private JTextField cartSearchBar = new JTextField();
-    private JTable cartTable = new JTable();
+    public JTable cartTable = new JTable();
     private JLabel cartTitle = new JLabel();
     private JButton deleteButton = new JButton();
     private JToggleButton jToggleButton1 = new JToggleButton();
@@ -144,7 +147,15 @@ public class FormCart extends JPanel {
     }
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        int selectedRow = cartTable.getSelectedRow();
+        if(selectedRow >= 0){
+            DefaultTableModel model = (DefaultTableModel) cartTable.getModel();
+            String productName = (String) model.getValueAt(selectedRow,0);
+            String productPrice = (String) model.getValueAt(selectedRow,2);
+            String productDescription = (String) model.getValueAt(selectedRow,1);
+            Connect connect = new Connect();
+            connect.removeFromCart("0", new Product(productName,productPrice,productDescription));
+        }
     }
 
     public void setCartTable(DefaultTableModel model){

@@ -32,4 +32,30 @@ public class Connect {
         }
         return products;
     }
+
+    public Boolean addToCart(String id, Product product){
+        Boolean added = false;
+        try {
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
+            sharedInterface.addToCart(id,product);
+            added = true;
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return added;
+    }
+
+    public Boolean removeFromCart(String id, Product product){
+        Boolean removed = false;
+        try {
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
+
+            removed = sharedInterface.deleteFromCart(id,product);
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return removed;
+    }
 }

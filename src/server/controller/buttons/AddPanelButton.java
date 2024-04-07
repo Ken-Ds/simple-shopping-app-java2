@@ -1,10 +1,12 @@
 package server.controller.buttons;
 
+import common.Product;
 import server.view.PanelMenus.AddPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import static common.GenerateUniqueId.generateUniqueId;
 import static common.SetJTable.addProduct;

@@ -1,12 +1,19 @@
 package client.view.form;
 
 import client.model.Connect;
+import com.google.gson.JsonObject;
 import common.Product;
 import common.SetJTable;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import static common.SetJTable.searchProductByName;
+import static server.model.ParseGson.searchProductByNameClient;
 
 
 public class FormHome extends JPanel {
@@ -48,6 +55,7 @@ public class FormHome extends JPanel {
                         "Title 1", "Title 2", "Title 3", "Title 4"
                 }
         ));
+
         jScrollPane1.setViewportView(jTable1);
 
         homeHeaderPanel.setBackground(new java.awt.Color(32, 217, 217));
@@ -146,6 +154,16 @@ public class FormHome extends JPanel {
         }
     }
     private void searchButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {
+        String nameToSearch = homeSearchBar.getText();
+        List<JsonObject> matchingProducts = searchProductByNameClient(nameToSearch);
+
+        // Process the matchingProducts list and update the homeTable accordingly
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Name", "Description", "Price"});
+        for (JsonObject product : matchingProducts) {
+            model.addRow(new Object[]{product.get("name").getAsString(), product.get("description").getAsString(), product.get("price").getAsString()});
+        }
+        setHomeTable(model);
     }
 
     private void homeSearchBarActionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,4 +172,5 @@ public class FormHome extends JPanel {
     public void setHomeTable(DefaultTableModel tableModel){
         homeTable.setModel(tableModel);
     }
+
 }

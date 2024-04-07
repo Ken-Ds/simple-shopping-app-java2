@@ -2,6 +2,10 @@ package client.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import static server.model.ParseGson.isUserExist;
 
 public class LogIn extends JFrame{
     private JButton buttonLogIn = new JButton();
@@ -25,6 +29,21 @@ public class LogIn extends JFrame{
 
 
     private void initComponents() {
+        buttonLogIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = textUsername.getText();
+                String password = textPass.getText();
+
+                if (isUserExist(username,password)) {
+                    System.out.println("Login Successfully");
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+        });
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         mainPanelLogIn.setBackground(new java.awt.Color(253, 245, 223));
@@ -162,6 +181,7 @@ public class LogIn extends JFrame{
     }// </editor-fold>
 
     private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {
+
 
     }
 

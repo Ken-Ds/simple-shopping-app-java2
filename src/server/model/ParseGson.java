@@ -5,6 +5,8 @@ import common.Product;
 
 import java.io.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ public class ParseGson {
     public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
     public static String productsDir = "res/products.json";
     private static String accountsDir = "res/accounts.json";
+
     public JsonArray getProducts(){
         JsonArray jsonArray= new JsonArray();
         try (BufferedReader reader = new BufferedReader(new FileReader(productsDir))){
@@ -210,16 +213,39 @@ public class ParseGson {
         }
         return false;
     }
+    public static void addAccount(String username, String password) {
+        try (FileReader reader = new FileReader(accountsDir)) {
+            JsonParser jsonParser = new JsonParser();
+            JsonObject jsonObject = jsonParser.parse(reader).getAsJsonObject();
 
-    public static void main(String[] args) {
-        String username = "Freddie";
-        String password = "kahitanona";
-        boolean userExists = isUserExist(username,password);
-        if (userExists) {
-            System.out.println("User exists.");
-        } else {
-            System.out.println("User does not exist.");
+            JsonObject accounts = jsonObject.getAsJsonObject("accounts");
+            JsonArray accountArray = accounts.getAsJsonArray("account");
+
+            JsonObject newAccount = new JsonObject();
+            newAccount.addProperty("id", String.valueOf(accountArray.size()));
+            newAccount.addProperty("username", username);
+            newAccount.addProperty("password", password);
+            newAccount.add("cart", new JsonObject());
+
+            accountArray.add(newAccount);
+
+            try (FileWriter writer = new FileWriter(accountsDir)) {
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                gson.toJson(jsonObject, writer);
+                System.out.println("Account added successfully.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
+    public static void main(String[] args) {
+        String username = "newUser";
+        String password = "newPassword";
+
+        addAccount(username, password);
+
+    }
 }

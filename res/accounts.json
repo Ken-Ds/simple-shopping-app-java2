@@ -29,6 +29,12 @@
         "username": "miguel",
         "password": "miguel",
         "cart": {}
+      },
+      {
+        "id": "2",
+        "username": "newUser",
+        "password": "newPassword",
+        "cart": {}
       }
     ]
   }

@@ -192,7 +192,7 @@ public class ParseGson {
         }
         return matchingProducts;
     }
-    public static boolean isUserExist(String username,String password) {
+    public  boolean isUserExist(String username,String password) {
         Gson gson = new Gson();
         try (BufferedReader br = new BufferedReader(new FileReader("res/accounts.json"))) {
             JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
@@ -209,17 +209,6 @@ public class ParseGson {
             throw new RuntimeException("Error reading/parsing JSON", e);
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        String username = "Freddie";
-        String password = "kahitanona";
-        boolean userExists = isUserExist(username,password);
-        if (userExists) {
-            System.out.println("User exists.");
-        } else {
-            System.out.println("User does not exist.");
-        }
     }
 
 }

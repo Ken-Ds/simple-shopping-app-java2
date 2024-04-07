@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static server.model.ParseGson.isUserExist;
 
 public class LogIn extends JFrame{
     private JButton buttonLogIn = new JButton();
@@ -29,21 +28,7 @@ public class LogIn extends JFrame{
 
 
     private void initComponents() {
-        buttonLogIn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = textUsername.getText();
-                String password = textPass.getText();
 
-                if (isUserExist(username,password)) {
-                    System.out.println("Login Successfully");
-                } else {
-
-                    JOptionPane.showMessageDialog(null, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-            }
-        });
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         mainPanelLogIn.setBackground(new java.awt.Color(253, 245, 223));
@@ -193,38 +178,19 @@ public class LogIn extends JFrame{
         // TODO add your handling code here:
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    public String returnTxtUserName(){
+        return textUsername.getText();
+    }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LogIn().setVisible(true);
-            }
-        });
+    public String returnTxtPass(){
+        return textPass.getText();
+    }
+
+    public void setButtonLogIn(ActionListener actionListener){
+        buttonLogIn.addActionListener(actionListener);
+    }
+
+    public void setButtonSignUp(ActionListener actionListener){
+        buttonSignUp.addActionListener(actionListener);
     }
 }

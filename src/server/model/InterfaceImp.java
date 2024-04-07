@@ -16,6 +16,14 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
     }
 
     @Override
+    public boolean logIn(String userName, String password) throws RemoteException {
+        Boolean isAccount = false;
+        if (parseGson.isUserExist(userName,password))
+            isAccount = true;
+        return isAccount;
+    }
+
+    @Override
     public ArrayList<Product> getProducts() throws RemoteException {
         ArrayList<Product> products= new ArrayList<>();
         parseGson = new ParseGson();

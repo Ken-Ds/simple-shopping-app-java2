@@ -9,6 +9,17 @@ import java.util.ArrayList;
 
 public class Connect {
 
+    public boolean isAccounts(String userName, String password){
+        Boolean isAccount = false;
+        try {
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
+            return sharedInterface.logIn(userName,password);
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return isAccount;
+    }
     public ArrayList<Product> getProducts(){
         ArrayList<Product> products = new ArrayList<>();
         try {

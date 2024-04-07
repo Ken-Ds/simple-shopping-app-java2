@@ -11,13 +11,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class InterfaceImp extends UnicastRemoteObject implements SharedInterface {
+    private ParseGson parseGson = new ParseGson();
     protected InterfaceImp() throws RemoteException {
     }
 
     @Override
     public ArrayList<Product> getProducts() throws RemoteException {
         ArrayList<Product> products= new ArrayList<>();
-        ParseGson parseGson = new ParseGson();
+        parseGson = new ParseGson();
         JsonArray productArray = parseGson.getProducts();
 
         for (int i = 0; i < productArray.size(); i++) {
@@ -37,7 +38,7 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
     @Override
     public ArrayList<Product> getCart() throws RemoteException {
         ArrayList<Product> products= new ArrayList<>();
-        ParseGson parseGson = new ParseGson();
+        parseGson = new ParseGson();
         JsonArray cart = parseGson.getAccountsCart("0");
         for (int i = 0; i < cart.size(); i++) {
             System.out.println(cart.get(i));
@@ -52,6 +53,16 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
             products.add(p);
         }
         return products;
+    }
+
+    @Override
+    public Boolean addToCart(String id, Product product) throws RemoteException {
+        return parseGson.addToCart(id,product);
+    }
+
+    @Override
+    public Boolean deleteFromCart(String id, Product product) throws RemoteException {
+        return parseGson.deleteFromCart(id,product);
     }
 
 

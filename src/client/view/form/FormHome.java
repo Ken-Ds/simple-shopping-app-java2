@@ -1,6 +1,7 @@
 package client.view.form;
 
 import client.model.Connect;
+import common.Product;
 import common.SetJTable;
 
 import javax.swing.*;
@@ -13,7 +14,7 @@ public class FormHome extends JPanel {
     private JPanel homeHeaderPanel = new JPanel();
     private JScrollPane homeScroll = new JScrollPane();
     private JTextField homeSearchBar = new JTextField();
-    private JTable homeTable = new JTable();
+    public JTable homeTable = new JTable();
     private JLabel homeTitle = new JLabel();
     private JScrollPane jScrollPane1 = new JScrollPane();
     private JTable jTable1 = new JTable();
@@ -108,7 +109,16 @@ public class FormHome extends JPanel {
     }
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        int selectedRow = homeTable.getSelectedRow();
+        if(selectedRow >= 0){
+            DefaultTableModel model = (DefaultTableModel) homeTable.getModel();
+            String productName = (String) model.getValueAt(selectedRow,0);
+            String productPrice = (String) model.getValueAt(selectedRow,2);
+            String productDescription = (String) model.getValueAt(selectedRow,1);
+            Connect connect = new Connect();
+            connect.addToCart("0", new Product(productName,productPrice,productDescription));
+            model.removeRow(selectedRow);
+        }
     }
 
     private void homeSearchBarActionPerformed(java.awt.event.ActionEvent evt) {

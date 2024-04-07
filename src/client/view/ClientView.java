@@ -1,8 +1,13 @@
 package client.view;
 
+import client.controller.buttons.login.LogInButton;
+import client.controller.buttons.login.SignUpButton;
+
 public class ClientView {
     public ClientView(){
-        ClientMainFrame clientMainFrame = new ClientMainFrame();
-        clientMainFrame.setVisible(true);
+        LogIn logIn = new LogIn();
+        logIn.setButtonLogIn(new LogInButton(logIn));
+        logIn.setButtonSignUp(new SignUpButton(logIn));
+        logIn.setVisible(true);
     }
 }

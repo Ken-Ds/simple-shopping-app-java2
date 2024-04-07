@@ -1,6 +1,7 @@
 package client.controller.buttons;
 
 import client.model.Connect;
+import client.view.ClientMainFrame;
 import client.view.form.FormHome;
 import common.Product;
 
@@ -22,8 +23,8 @@ public class FormHomeAddButton implements ActionListener {
             String productPrice = (String) model.getValueAt(selectedRow,2);
             String productDescription = (String) model.getValueAt(selectedRow,1);
             Product product = new Product(productName,productPrice,productDescription);
-            Connect connect = new Connect();
-            connect.addToCart("0",product );
+            Connect connect = new Connect(ClientMainFrame.ip);
+            connect.addToCart(ClientMainFrame.id,product );
             model.removeRow(selectedRow);
         }
     }

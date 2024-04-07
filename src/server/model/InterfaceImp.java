@@ -34,6 +34,11 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
     }
 
     @Override
+    public String getId(String userName) throws RemoteException {
+        return parseGson.getUserID(userName);
+    }
+
+    @Override
     public ArrayList<Product> getProducts() throws RemoteException {
         ArrayList<Product> products= new ArrayList<>();
         parseGson = new ParseGson();
@@ -56,9 +61,9 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
     }
 
     @Override
-    public ArrayList<Product> getCart() throws RemoteException {
+    public ArrayList<Product> getCart(String idKey) throws RemoteException {
         ArrayList<Product> products= new ArrayList<>();
-        JsonArray cart = parseGson.getAccountsCart("0");
+        JsonArray cart = parseGson.getAccountsCart(idKey);
         for (int i = 0; i < cart.size(); i++) {
             JsonObject product = cart.get(i).getAsJsonObject();
             String id = product.get("id").getAsString();

@@ -10,14 +10,16 @@ import java.rmi.RemoteException;
 
 public class ButtonSignUp implements ActionListener {
     Signup signup;
-    public ButtonSignUp(Signup signup){
+    String ip;
+    public ButtonSignUp(Signup signup, String ip){
         this.signup = signup;
+        this.ip = ip;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
         String username = signup.returnTxtUserName();
         String password= signup.returnTxtPassword();
-        Connect connect = new Connect();
+        Connect connect = new Connect(ip);
         try {
             if(connect.signUp(username,password)){
                 JOptionPane.showMessageDialog(null,"Account Successfully Added");

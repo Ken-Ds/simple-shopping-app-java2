@@ -1,5 +1,6 @@
 package client.model;
 
+import client.view.LogIn;
 import common.Product;
 import common.SharedInterface;
 
@@ -9,11 +10,14 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
 public class Connect {
-
+    private static String ip = "localhost";
+    public Connect(String add){
+        ip = add;
+    }
     public boolean isAccounts(String userName, String password){
         Boolean isAccount = false;
         try {
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            Registry registry = LocateRegistry.getRegistry(ip, 1099);
             SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
             return sharedInterface.logIn(userName,password);
         }catch (Exception e){
@@ -25,7 +29,7 @@ public class Connect {
     public boolean signUp(String username, String password) throws RemoteException {
         Boolean isAccount = false;
         try {
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            Registry registry = LocateRegistry.getRegistry(ip, 1099);
             SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
             isAccount = sharedInterface.signUp(username,password);
             if(isAccount){
@@ -36,10 +40,22 @@ public class Connect {
         }
         return isAccount;
     }
+
+    public String getId(String username) throws RemoteException {
+        String id = "";
+        try {
+            Registry registry = LocateRegistry.getRegistry(ip, 1099);
+            SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
+            id = sharedInterface.getId(username);
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return id;
+    }
     public ArrayList<Product> getProducts(){
         ArrayList<Product> products = new ArrayList<>();
         try {
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            Registry registry = LocateRegistry.getRegistry(ip, 1099);
              SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
              products = sharedInterface.getProducts();
         }catch (Exception e){
@@ -48,12 +64,12 @@ public class Connect {
         return products;
     }
 
-    public ArrayList<Product> getCart(){
+    public ArrayList<Product> getCart(String id){
         ArrayList<Product> products = new ArrayList<>();
         try {
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            Registry registry = LocateRegistry.getRegistry(ip, 1099);
             SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
-            products = sharedInterface.getCart();
+            products = sharedInterface.getCart(id);
         }catch (Exception e){
             e.getMessage();
         }
@@ -63,7 +79,7 @@ public class Connect {
     public Boolean addToCart(String id, Product product){
         Boolean added = false;
         try {
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            Registry registry = LocateRegistry.getRegistry(ip, 1099);
             SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
             sharedInterface.addToCart(id,product);
             added = true;
@@ -76,7 +92,7 @@ public class Connect {
     public Boolean removeFromCart(String id, Product product){
         Boolean removed = false;
         try {
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            Registry registry = LocateRegistry.getRegistry(ip, 1099);
             SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
 
             removed = sharedInterface.deleteFromCart(id,product);

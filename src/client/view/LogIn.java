@@ -193,4 +193,8 @@ public class LogIn extends JFrame{
     public void setButtonSignUp(ActionListener actionListener){
         buttonSignUp.addActionListener(actionListener);
     }
+
+    public String returnIpAddress(){
+        return textIPAdd.getText();
+    }
 }

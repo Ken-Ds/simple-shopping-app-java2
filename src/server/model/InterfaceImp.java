@@ -88,5 +88,10 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
         return parseGson.deleteFromCart(id,product);
     }
 
+    @Override
+    public Boolean buyItem(String username, String product) throws RemoteException {
+        return parseGson.buyItem(username, product);
+    }
+
 
 }

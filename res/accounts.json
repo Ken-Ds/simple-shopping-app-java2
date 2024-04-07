@@ -8,13 +8,6 @@
         "cart": {
           "product": [
             {
-              "id": "0",
-              "name": "Rdsds",
-              "price": "2",
-              "description": "Iphone",
-              "status": "On sale"
-            },
-            {
               "id": "1",
               "name": "Stick",
               "price": "10",

@@ -101,4 +101,17 @@ public class Connect {
         }
         return removed;
     }
+
+    public boolean bought(String username, String product){
+        Boolean bought = false;
+        try {
+            Registry registry = LocateRegistry.getRegistry(ip, 1099);
+            SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
+
+            bought = sharedInterface.buyItem(username,product);
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return bought;
+    }
 }

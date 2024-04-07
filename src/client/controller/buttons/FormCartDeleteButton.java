@@ -25,7 +25,9 @@ public class FormCartDeleteButton implements ActionListener {
             String productPrice = (String) model.getValueAt(selectedRow, 2);
             String productDescription = (String) model.getValueAt(selectedRow, 1);
             Connect connect = new Connect(ClientMainFrame.ip);
-            connect.removeFromCart(ClientMainFrame.id, new Product(productName, productPrice, productDescription));
+            connect.bought(ClientMainFrame.username,productName);
+            connect.removeFromCart(ClientMainFrame.id, new Product(productName,productPrice,productDescription));
+            model.removeRow(selectedRow);
         }
     }
 }

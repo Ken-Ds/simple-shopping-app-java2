@@ -17,4 +17,6 @@ public interface SharedInterface extends Remote {
     public Boolean addToCart(String id, Product product) throws RemoteException;
 
     public Boolean deleteFromCart(String id, Product product) throws RemoteException;
+
+    public Boolean buyItem(String username, String product) throws RemoteException;
 }

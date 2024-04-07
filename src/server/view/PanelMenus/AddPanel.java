@@ -16,11 +16,11 @@ public class AddPanel extends JPanel {
     private JPanel panelTop = new JPanel();
     private JScrollPane scrollTable = new JScrollPane();
     public JTable tableAddProduct = new JTable();
-    private JTextField txtDescription = new JTextField();
-    private JTextField txtName = new JTextField();
-    private JTextField txtPrice = new JTextField();
-    private JTextField txtQuantity = new JTextField();
-    private JTextField txtStatus = new JTextField();
+    public JTextField txtDescription = new JTextField();
+    public JTextField txtName = new JTextField();
+    public JTextField txtPrice = new JTextField();
+    public JTextField txtQuantity = new JTextField();
+    public JTextField txtStatus = new JTextField();
     public SetJTable set = new SetJTable();
 
     public AddPanel() {

@@ -2,6 +2,7 @@ package server.controller.buttons;
 
 import server.view.PanelMenus.AddPanel;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,12 +17,26 @@ public class AddPanelButton implements ActionListener  {
     @Override
     public void actionPerformed(ActionEvent e) {
         String id = generateUniqueId();
-        String name = addPanel.returnName();
-        String price = addPanel.returnPrice();
-        String description = addPanel.returnDescription();
-        int quantity = Integer.parseInt(addPanel.returnQuantity());
-        String status = addPanel.returnStatus();
-        addProduct(String.valueOf(id), name, price, description, status, quantity);
+        String name = addPanel.returnName().trim();
+        String price = addPanel.returnPrice().trim();
+        String description = addPanel.returnDescription().trim();
+        String status = addPanel.returnStatus().trim();
+        String quantityStr = addPanel.returnQuantity().trim();
+
+        if (name.isEmpty() || price.isEmpty() || description.isEmpty() || status.isEmpty() || quantityStr.isEmpty()) {
+            JOptionPane.showMessageDialog(addPanel,"All field must be filled up");
+            return;
+        }
+
+        int quantity = Integer.parseInt(quantityStr);
+
+        addProduct(id, name, price, description, status, quantity);
+
+        addPanel.txtQuantity.setText("");
+        addPanel.txtDescription.setText("");
+        addPanel.txtName.setText("");
+        addPanel.txtPrice.setText("");
+        addPanel.txtStatus.setText("");
         addPanel.tableAddProduct.setModel(addPanel.set.setTable());
     }
 }

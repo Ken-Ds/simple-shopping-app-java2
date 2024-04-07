@@ -53,7 +53,7 @@ public class SetJTable {
     }
 
 
-    public static void addProduct(String id, String name, String price, String description,String status, int quantity) {
+    public static void addProduct(String id, String name, String price, String description, String status, int quantity) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
             JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
@@ -132,6 +132,7 @@ public class SetJTable {
             throw new RuntimeException("Error reading/parsing JSON", e);
         }
     }
+
     public static List<JsonObject> searchProductByName(String name) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<JsonObject> matchingProducts = new ArrayList<>();

@@ -23,7 +23,7 @@ public class DeletePanel extends JPanel {
         tableDeleteProduct.setModel(set.setTable());
 
         scrollDelete.setViewportView(tableDeleteProduct);
-        tableDeleteProduct.setEnabled(false);
+        txtId.setVisible(false);
 
         buttonDelete.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         buttonDelete.setText("Delete");

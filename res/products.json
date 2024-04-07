@@ -32,14 +32,6 @@
         "description": "For writing wrong answers",
         "status": "On Sale",
         "quantity": 10
-      },
-      {
-        "id": "8",
-        "name": "Pencil",
-        "price": "10",
-        "description": "For drawing",
-        "status": "On Sale",
-        "quantity": 5
       }
     ]
   }

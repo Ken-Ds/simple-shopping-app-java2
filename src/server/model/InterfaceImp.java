@@ -29,8 +29,10 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
             String description = product.get("description").getAsString();
             String status = product.get("status").getAsString();
             int quantity = product.get("quantity").getAsInt();
-            Product p = new Product(id, name, price, description, status, quantity);
-            products.add(p);
+            if (quantity > 0) {
+                Product p = new Product(id, name, price, description, status, quantity);
+                products.add(p);
+            }
         }
         return products;
     }
@@ -47,7 +49,6 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
             String description = product.get("description").getAsString();
             String status = product.get("status").getAsString();
             int quantity = 0;
-            System.out.println("s");
             Product p = new Product(id, name, price, description, status, quantity);
             products.add(p);
         }

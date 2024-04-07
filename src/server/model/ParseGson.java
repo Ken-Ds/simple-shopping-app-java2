@@ -3,10 +3,7 @@ package server.model;
 import com.google.gson.*;
 import common.Product;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class ParseGson {
     public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -91,15 +88,19 @@ public class ParseGson {
                 if(account.get("id").getAsString().equals(id)){
                     JsonArray cart = account.getAsJsonObject("cart").getAsJsonArray("product");
                     Product product1 = getProdInfo(product.getName());
-                    JsonObject newToCart = new JsonObject();
-                    newToCart.addProperty("id", product1.getId());
+                    if (product1.getQuantity() > 0) {
+                        JsonObject newToCart = new JsonObject();
+                        newToCart.addProperty("id", product1.getId());
 
-                    newToCart.addProperty("name", product1.getName());
-                    newToCart.addProperty("price", product1.getPrice());
-                    newToCart.addProperty("description", product1.getDescription());
-                    newToCart.addProperty("status", product1.getStatus());
-                    cart.add(newToCart);
-                    break;
+                        newToCart.addProperty("name", product1.getName());
+                        newToCart.addProperty("price", product1.getPrice());
+                        newToCart.addProperty("description", product1.getDescription());
+                        newToCart.addProperty("status", product1.getStatus());
+
+                        cart.add(newToCart);
+                        reduceQuantity(product1.getId());
+                        break;
+                    }
                 }
             }
             try (FileWriter writer = new FileWriter(accountsDir)){
@@ -145,5 +146,29 @@ public class ParseGson {
             e.getMessage();
         }
         return removed;
+    }
+
+    public void reduceQuantity(String id){
+        try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray productList = jsonObject.getAsJsonObject("data").getAsJsonArray("product");
+            for (JsonElement productElement : productList) {
+                JsonObject product = productElement.getAsJsonObject();
+                if (product.get("id").getAsString().equals(id)) {
+                    product.addProperty("quantity", product.get("quantity").getAsInt() - 1);
+                    break;
+                }
+            }
+            try (FileWriter writer = new FileWriter("res/products.json")) {
+                gson.toJson(jsonObject, writer);
+            } catch (IOException e) {
+                throw new RuntimeException("Error writing to JSON file", e);
+            }
+            System.out.println("Product with ID " + id + " edited successfully.");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("JSON file not found", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading/parsing JSON", e);
+        }
     }
 }

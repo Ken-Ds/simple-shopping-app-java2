@@ -196,7 +196,6 @@ public class ParseGson {
         return matchingProducts;
     }
     public boolean isUserExist(String username,String password) {
-        Gson gson = new Gson();
         try (BufferedReader br = new BufferedReader(new FileReader("res/accounts.json"))) {
             JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
             JsonArray accountList = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
@@ -244,7 +243,6 @@ public class ParseGson {
     }
 
     public boolean isUserNameExist(String username) {
-        Gson gson = new Gson();
         try (BufferedReader br = new BufferedReader(new FileReader("res/accounts.json"))) {
             JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
             JsonArray accountList = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
@@ -260,5 +258,24 @@ public class ParseGson {
             throw new RuntimeException("Error reading/parsing JSON", e);
         }
         return false;
+    }
+
+    public String getUserID(String username){
+        String id = "";
+        try (BufferedReader br = new BufferedReader(new FileReader("res/accounts.json"))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray accountList = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
+            for (JsonElement accountElement : accountList) {
+                JsonObject account = accountElement.getAsJsonObject();
+                if (account.get("username").getAsString().equals(username)) {
+                    id =  account.get("id").getAsString();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("JSON file not found", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading/parsing JSON", e);
+        }
+        return id;
     }
 }

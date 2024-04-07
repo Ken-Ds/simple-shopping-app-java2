@@ -15,10 +15,6 @@ public class ButtonBack implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        LogIn logIn = new LogIn();
-        logIn.setButtonLogIn(new LogInButton(logIn));
-        logIn.setButtonSignUp(new SignUpButton(logIn));
-        logIn.setVisible(true);
         signup.dispose();
     }
 }

@@ -11,9 +11,9 @@ import client.view.form.FormCart;
 import client.view.form.FormHome;
 import client.view.swing.PanelBorder;
 import common.SetJTable;
-import server.model.ParseGson;
 
 import java.awt.Color;
+import java.rmi.RemoteException;
 import javax.swing.*;
 
 public class ClientMainFrame extends JFrame {
@@ -24,7 +24,18 @@ public class ClientMainFrame extends JFrame {
     private FormHome home = new FormHome();
     private FormCart cart = new FormCart();
 
-    public ClientMainFrame() {
+    public static Connect connect;
+
+    public static String username;
+    public static String ip;
+
+    public static String id;
+
+    public ClientMainFrame(String username, String ip) throws RemoteException {
+        this.username = username;
+        this.ip = ip;
+        connect = new Connect(ip);
+        id = connect.getId(username);
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         clientMenu1.initMoving(ClientMainFrame.this);
@@ -32,18 +43,16 @@ public class ClientMainFrame extends JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                    ParseGson parseGson = new ParseGson();
                     SetJTable setJTable = new SetJTable();
-                    Connect connect = new Connect();
+
                     home.setHomeTable(setJTable.setProductClientTable(connect.getProducts()));
                     setForm(home);
                     home.setButtonAdd(new FormHomeAddButton(home));
                     home.setButtonSearch(new FormHomeSearchButton(home));
                 } else if (index == 2) {
-                    ParseGson parseGson = new ParseGson();
                     SetJTable setJTable = new SetJTable();
-                    Connect connect = new Connect();
-                    cart.setCartTable(setJTable.setClientCart(connect.getCart()));
+
+                    cart.setCartTable(setJTable.setClientCart(connect.getCart(id)));
                     setForm(cart);
                     cart.setButtonDelete(new FormCartDeleteButton(cart));
                 }

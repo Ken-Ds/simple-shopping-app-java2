@@ -1,5 +1,8 @@
 package client.view;
 
+import client.controller.buttons.FormCartDeleteButton;
+import client.controller.buttons.FormHomeAddButton;
+import client.controller.buttons.FormHomeSearchButton;
 import client.model.Connect;
 import client.view.component.ClientMenu;
 import client.view.component.Header;
@@ -34,12 +37,15 @@ public class ClientMainFrame extends JFrame {
                     Connect connect = new Connect();
                     home.setHomeTable(setJTable.setProductClientTable(connect.getProducts()));
                     setForm(home);
+                    home.setButtonAdd(new FormHomeAddButton(home));
+                    home.setButtonSearch(new FormHomeSearchButton(home));
                 } else if (index == 2) {
                     ParseGson parseGson = new ParseGson();
                     SetJTable setJTable = new SetJTable();
                     Connect connect = new Connect();
                     cart.setCartTable(setJTable.setClientCart(connect.getCart()));
                     setForm(cart);
+                    cart.setButtonDelete(new FormCartDeleteButton(cart));
                 }
             }
         });

@@ -44,9 +44,10 @@ public class ParseGson {
             for (JsonElement accountElement : accountList ){
                 JsonObject account = accountElement.getAsJsonObject();
                 if(account.get("id").getAsString().equals(searchKey)){
-                    JsonObject cart = account.getAsJsonObject("cart");
-                    JsonArray prod = cart.getAsJsonArray("product");
-                    jsonArray.add(prod);
+                    JsonArray prod = account.getAsJsonObject("cart").getAsJsonArray("product");
+                    for (JsonElement productElement : prod) {
+                        jsonArray.add(productElement);
+                    }
                 }
             }
         } catch (Exception e){

@@ -22,7 +22,6 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
 
         for (int i = 0; i < productArray.size(); i++) {
             JsonObject product = productArray.get(i).getAsJsonObject();
-            System.out.println(product);
             String id = product.get("id").getAsString();
             String name = product.get("name").getAsString();
             String price = product.get("price").getAsString();
@@ -43,7 +42,6 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
         for (int i = 0; i < cart.size(); i++) {
             System.out.println(cart.get(i));
             JsonObject product = cart.get(i).getAsJsonObject();
-            System.out.println("yes");
             String id = product.get("id").getAsString();
             String name = product.get("name").getAsString();
             String price = product.get("price").getAsString();

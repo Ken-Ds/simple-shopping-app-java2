@@ -4,11 +4,12 @@ import com.google.gson.*;
 import common.Product;
 
 import java.io.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParseGson {
-    public static Gson gson = new Gson();
+    public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
     public static String productsDir = "res/products.json";
     private static String accountsDir = "res/accounts.json";
     public JsonArray getProducts(){
@@ -83,20 +84,26 @@ public class ParseGson {
         Boolean added = false;
         try (BufferedReader reader = new BufferedReader(new FileReader(accountsDir))){
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-            JsonArray accounts = jsonObject.getAsJsonObject("accounts").getAsJsonArray("accounts");
+            JsonArray accounts = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
             for (JsonElement accountElement : accounts){
+
                 JsonObject account = accountElement.getAsJsonObject();
                 if(account.get("id").getAsString().equals(id)){
                     JsonArray cart = account.getAsJsonObject("cart").getAsJsonArray("product");
                     Product product1 = getProdInfo(product.getName());
-                    JsonObject newToCart = new JsonObject();
-                    newToCart.addProperty("id", product1.getId());
-                    newToCart.addProperty("name", product1.getName());
-                    newToCart.addProperty("price", product1.getPrice());
-                    newToCart.addProperty("description", product1.getDescription());
-                    newToCart.addProperty("status", product1.getStatus());
-                    cart.add(newToCart);
-                    break;
+                    if (product1.getQuantity() > 0) {
+                        JsonObject newToCart = new JsonObject();
+                        newToCart.addProperty("id", product1.getId());
+
+                        newToCart.addProperty("name", product1.getName());
+                        newToCart.addProperty("price", product1.getPrice());
+                        newToCart.addProperty("description", product1.getDescription());
+                        newToCart.addProperty("status", product1.getStatus());
+
+                        cart.add(newToCart);
+                        reduceQuantity(product1.getId());
+                        break;
+                    }
                 }
             }
             try (FileWriter writer = new FileWriter(accountsDir)){
@@ -142,6 +149,30 @@ public class ParseGson {
         }
         return removed;
     }
+
+    public void reduceQuantity(String id){
+        try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray productList = jsonObject.getAsJsonObject("data").getAsJsonArray("product");
+            for (JsonElement productElement : productList) {
+                JsonObject product = productElement.getAsJsonObject();
+                if (product.get("id").getAsString().equals(id)) {
+                    product.addProperty("quantity", product.get("quantity").getAsInt() - 1);
+                    break;
+                }
+            }
+            try (FileWriter writer = new FileWriter("res/products.json")) {
+                gson.toJson(jsonObject, writer);
+            } catch (IOException e) {
+                throw new RuntimeException("Error writing to JSON file", e);
+            }
+            System.out.println("Product with ID " + id + " edited successfully.");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("JSON file not found", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading/parsing JSON", e);
+        }
+    }
     public static List<JsonObject> searchProductByNameClient(String name) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<JsonObject> matchingProducts = new ArrayList<>();
@@ -162,4 +193,3 @@ public class ParseGson {
         return matchingProducts;
     }
 }
-

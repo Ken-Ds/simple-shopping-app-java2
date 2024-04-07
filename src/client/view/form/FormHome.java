@@ -139,8 +139,9 @@ public class FormHome extends JPanel {
             String productName = (String) model.getValueAt(selectedRow,0);
             String productPrice = (String) model.getValueAt(selectedRow,2);
             String productDescription = (String) model.getValueAt(selectedRow,1);
+            Product product = new Product(productName,productPrice,productDescription);
             Connect connect = new Connect();
-            connect.addToCart("0", new Product(productName,productPrice,productDescription));
+            connect.addToCart("0",product );
             model.removeRow(selectedRow);
         }
     }

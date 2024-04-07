@@ -29,8 +29,10 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
             String description = product.get("description").getAsString();
             String status = product.get("status").getAsString();
             int quantity = product.get("quantity").getAsInt();
-            Product p = new Product(id, name, price, description, status, quantity);
-            products.add(p);
+            if (quantity > 0) {
+                Product p = new Product(id, name, price, description, status, quantity);
+                products.add(p);
+            }
         }
         return products;
     }
@@ -38,17 +40,15 @@ public class InterfaceImp extends UnicastRemoteObject implements SharedInterface
     @Override
     public ArrayList<Product> getCart() throws RemoteException {
         ArrayList<Product> products= new ArrayList<>();
-        parseGson = new ParseGson();
         JsonArray cart = parseGson.getAccountsCart("0");
         for (int i = 0; i < cart.size(); i++) {
-            System.out.println(cart.get(i));
             JsonObject product = cart.get(i).getAsJsonObject();
             String id = product.get("id").getAsString();
             String name = product.get("name").getAsString();
             String price = product.get("price").getAsString();
             String description = product.get("description").getAsString();
             String status = product.get("status").getAsString();
-            int quantity = product.get("quantity").getAsInt();
+            int quantity = 0;
             Product p = new Product(id, name, price, description, status, quantity);
             products.add(p);
         }

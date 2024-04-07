@@ -1,9 +1,6 @@
 package server.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import common.Product;
 
 import java.io.BufferedReader;
@@ -12,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ParseGson {
-    public static Gson gson = new Gson();
+    public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
     public static String productsDir = "res/products.json";
     private static String accountsDir = "res/accounts.json";
     public JsonArray getProducts(){
@@ -87,14 +84,16 @@ public class ParseGson {
         Boolean added = false;
         try (BufferedReader reader = new BufferedReader(new FileReader(accountsDir))){
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-            JsonArray accounts = jsonObject.getAsJsonObject("accounts").getAsJsonArray("accounts");
+            JsonArray accounts = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
             for (JsonElement accountElement : accounts){
+
                 JsonObject account = accountElement.getAsJsonObject();
                 if(account.get("id").getAsString().equals(id)){
                     JsonArray cart = account.getAsJsonObject("cart").getAsJsonArray("product");
                     Product product1 = getProdInfo(product.getName());
                     JsonObject newToCart = new JsonObject();
                     newToCart.addProperty("id", product1.getId());
+
                     newToCart.addProperty("name", product1.getName());
                     newToCart.addProperty("price", product1.getPrice());
                     newToCart.addProperty("description", product1.getDescription());
@@ -118,6 +117,7 @@ public class ParseGson {
 
     public Boolean deleteFromCart(String id, Product product){
         Boolean removed = false;
+        gson = new GsonBuilder().setPrettyPrinting().create();
         try (BufferedReader reader = new BufferedReader(new FileReader(accountsDir))){
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
             JsonArray accountList = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");

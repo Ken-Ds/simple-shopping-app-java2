@@ -198,7 +198,6 @@ public class SetJTable {
     public DefaultTableModel setClientCart(ArrayList<Product> cart){
         String[] columnNames = {"Name", "Description", "Price"};
         DefaultTableModel model = new DefaultTableModel(columnNames,0);
-        System.out.println("s");
         for (Product product: cart){
             String name = product.getName();
             String description = product.getDescription();

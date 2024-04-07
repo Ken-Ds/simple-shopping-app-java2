@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Header extends JPanel {
-    private JLabel closeButton;
+    private JLabel closeButton = new JLabel();
 
     public Header() {
         initComponents();
@@ -13,11 +13,9 @@ public class Header extends JPanel {
 
     private void initComponents() {
 
-        closeButton = new JLabel();
-
         setBackground(new Color(0, 0, 0));
 
-        closeButton.setFont(new Font("Arial Black", 1, 18)); // NOI18N
+        closeButton.setFont(new Font("Arial Black", Font.BOLD, 18));
         closeButton.setForeground(new Color(255, 255, 255));
         closeButton.setText("X");
         closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -26,21 +24,21 @@ public class Header extends JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(1027, Short.MAX_VALUE)
                                 .addComponent(closeButton)
                                 .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 

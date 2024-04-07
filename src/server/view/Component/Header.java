@@ -4,8 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Header extends JPanel {
-    private JLabel labelExit;
-    private JPanel panelExit;
+    private JLabel labelExit = new JLabel();
+    private JPanel panelExit = new JPanel();
 
     public Header() {
         initComponents();
@@ -15,12 +15,9 @@ public class Header extends JPanel {
 
     private void initComponents() {
 
-        panelExit = new JPanel();
-        labelExit = new JLabel();
+        setBackground(new Color(0, 0, 0));
 
-        setBackground(new java.awt.Color(0, 0, 0));
-
-        panelExit.setBackground(new java.awt.Color(255, 255, 255));
+        panelExit.setBackground(new Color(255, 255, 255));
         panelExit.setOpaque(false);
         panelExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -28,8 +25,8 @@ public class Header extends JPanel {
             }
         });
 
-        labelExit.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18));
-        labelExit.setForeground(new java.awt.Color(255, 255, 255));
+        labelExit.setFont(new Font("Segoe UI", Font.BOLD, 18));
+        labelExit.setForeground(new Color(255, 255, 255));
         labelExit.setHorizontalAlignment(SwingConstants.CENTER);
         labelExit.setText("X");
 

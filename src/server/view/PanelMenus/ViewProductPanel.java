@@ -16,29 +16,15 @@ public class ViewProductPanel extends JPanel {
     private JScrollPane jScrollPane1 = new JScrollPane();
     private JLabel labelID = new JLabel();
     private JPanel panelTop = new JPanel();
-    private JTable tableViewProduct = new JTable();
+    public JTable tableViewProduct = new JTable();
     private JTextField txtID = new JTextField();
-    private SetJTable set = new SetJTable();
+    public SetJTable set = new SetJTable();
 
     public ViewProductPanel() {
         initComponents();
     }
 
     private void initComponents() {
-        buttonViewProd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String name = returnId();
-                List<JsonObject> matchingProducts = searchProductByName(name);
-                DefaultTableModel model = (DefaultTableModel) tableViewProduct.getModel();
-                model.setRowCount(0);
-                for (JsonObject product : matchingProducts) {
-                    model.addRow(new Object[]{product.get("id").getAsString(),product.get("name").getAsString(), product.get("price").getAsString(),product.get("description").getAsString(),product.get("status").getAsString(), product.get("quantity").getAsString()});
-                }
-
-
-            }
-        });
 
         setPreferredSize(new java.awt.Dimension(871, 483));
         tableViewProduct.setModel(set.setTable());
@@ -99,5 +85,8 @@ public class ViewProductPanel extends JPanel {
     }
     public String returnId(){
         return txtID.getText();
+    }
+    public void setSearchProduct(ActionListener listener){
+        buttonViewProd.addActionListener(listener);
     }
 }

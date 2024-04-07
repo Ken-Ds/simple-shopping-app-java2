@@ -1,10 +1,7 @@
 package server.view.Component;
 import server.view.MenuClass.ModelMenu;
-import java.awt.Color;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import java.awt.*;
 import javax.swing.*;
 
 public class MenuItem extends JPanel {
@@ -39,7 +36,7 @@ public class MenuItem extends JPanel {
 
         labelName = new JLabel();
 
-        labelName.setForeground(new java.awt.Color(255, 255, 255));
+        labelName.setForeground(new Color(255, 255, 255));
         labelName.setText("Menu Name");
 
         GroupLayout layout = new GroupLayout(this);
@@ -55,7 +52,7 @@ public class MenuItem extends JPanel {
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(labelName, GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
         );
-    }// </editor-fold>
+    }
 
     @Override
     protected void paintComponent(Graphics grphcs) {

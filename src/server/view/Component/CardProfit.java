@@ -6,8 +6,8 @@ import java.awt.*;
 import javax.swing.*;
 
 public class CardProfit extends JPanel {
-    private JLabel labelProfit;
-    private JLabel labelValue;
+    private JLabel labelProfit = new JLabel();
+    private JLabel labelValue = new JLabel();
 
     public Color getColor1() {
         return color1;
@@ -42,18 +42,15 @@ public class CardProfit extends JPanel {
 
     private void initComponents() {
 
-        labelProfit = new JLabel();
-        labelValue = new JLabel();
+        setBackground(new Color(204, 204, 204));
 
-        setBackground(new java.awt.Color(204, 204, 204));
-
-        labelProfit.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
-        labelProfit.setForeground(new java.awt.Color(255, 255, 255));
+        labelProfit.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        labelProfit.setForeground(new Color(255, 255, 255));
         labelProfit.setText("Profit");
 
-        labelValue.setBackground(new java.awt.Color(255, 255, 255));
-        labelValue.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
-        labelValue.setForeground(new java.awt.Color(255, 255, 255));
+        labelValue.setBackground(new Color(255, 255, 255));
+        labelValue.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        labelValue.setForeground(new Color(255, 255, 255));
         labelValue.setText("Values");
 
         GroupLayout layout = new GroupLayout(this);

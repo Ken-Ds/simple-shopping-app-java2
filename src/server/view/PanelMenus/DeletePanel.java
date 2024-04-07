@@ -2,21 +2,18 @@ package server.view.PanelMenus;
 import common.SetJTable;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 import static common.SetJTable.deleteProduct;
 
 public class DeletePanel extends JPanel {
     private JToggleButton buttonDelete = new JToggleButton();
     private JScrollPane scrollDelete = new JScrollPane();
-    private JTable tableDeleteProduct = new JTable();
-    private SetJTable set = new SetJTable();
-    private JTextField txtId = new JTextField();
+    public JTable tableDeleteProduct = new JTable();
+    public SetJTable set = new SetJTable();
+    public JTextField txtId = new JTextField();
 
     public DeletePanel() {
         initComponents();
@@ -30,16 +27,6 @@ public class DeletePanel extends JPanel {
 
         buttonDelete.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         buttonDelete.setText("Delete");
-        buttonDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                String id = txtId.getText();
-                if (!id.isEmpty()) {
-                    deleteProduct(id);
-                    txtId.setText("");
-                    tableDeleteProduct.setModel(set.setTable());
-                }
-            }
-        });
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -64,6 +51,7 @@ public class DeletePanel extends JPanel {
                                 .addContainerGap())
         );
     }
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {
-    }
+   public void setDeleteButton(ActionListener listener){
+        buttonDelete.addActionListener(listener);
+   }
 }

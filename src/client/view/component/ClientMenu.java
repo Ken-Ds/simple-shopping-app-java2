@@ -1,11 +1,8 @@
 package client.view.component;
 
 import client.view.event.EventMenuSelected;
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -14,10 +11,10 @@ import client.view.modelMenu.ModelMenu;
 import client.view.swing.ListMenu;
 
 public class ClientMenu extends JPanel {
-    private JSeparator jSeparator2;
-    private ListMenu<String> listMenu1;
-    private javax.swing.JLabel titleLabel;
-    private javax.swing.JPanel titlePanel;
+    private JSeparator jSeparator2 = new JSeparator();
+    private ListMenu<String> listMenu1 = new ListMenu<>();
+    private javax.swing.JLabel titleLabel = new JLabel();
+    private javax.swing.JPanel titlePanel = new JPanel();
 
     private EventMenuSelected event;
 
@@ -47,19 +44,12 @@ public class ClientMenu extends JPanel {
         listMenu1.addItem(new ModelMenu(" ", ModelMenu.MenuType.EMPTY));
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
-        titlePanel = new javax.swing.JPanel();
-        titleLabel = new javax.swing.JLabel();
-        listMenu1 = new ListMenu<>();
-        jSeparator2 = new JSeparator();
 
         titlePanel.setToolTipText("");
         titlePanel.setOpaque(false);
 
-        titleLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Tahoma", Font.BOLD, 24));
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel.setText("UPHILL App");
 
@@ -101,7 +91,7 @@ public class ClientMenu extends JPanel {
                                 .addComponent(listMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
-    }// </editor-fold>
+    }
 
     @Override
     protected void paintChildren(Graphics grphcs) {

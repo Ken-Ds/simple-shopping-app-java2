@@ -3,16 +3,18 @@ package server.view.PanelMenus;
 import common.SetJTable;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class ViewClientPanel extends JPanel {
     private JButton buttonSearch = new JButton();
     private JLabel labelUser = new JLabel();
-    private JTextField textUsername = new JTextField();
+    public JTextField textUsername = new JTextField();
     private JScrollPane jScrollPane1 = new JScrollPane();
-    private JTable tableViewClient = new JTable();
-    private SetJTable set = new SetJTable();
+    public JTable tableViewClient = new JTable();
+
+    public SetJTable set = new SetJTable();
 
     public ViewClientPanel() {
         initComponents();
@@ -27,7 +29,7 @@ public class ViewClientPanel extends JPanel {
         buttonSearch.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         buttonSearch.setText("Search");
 
-        labelUser.setText("Username :");
+        labelUser.setText("ID :");
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -54,5 +56,11 @@ public class ViewClientPanel extends JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
         );
+    }
+    public void setSearchButton(ActionListener listener){
+        buttonSearch.addActionListener(listener);
+    }
+    public String returnID(){
+        return textUsername.getText();
     }
 }

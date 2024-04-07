@@ -1,5 +1,6 @@
 package server.view;
 
+import server.controller.buttons.*;
 import server.view.Component.Header;
 import server.view.Component.PanelBoard;
 import server.view.EventMenu.EventMenuSelected;
@@ -34,6 +35,8 @@ public class MainFrame extends JFrame {
                     setForm(dashboard);
                 } else if (index == 2) {
                     setForm(client);
+                    client.tableViewClient.setModel(client.set.setViewClientTable());
+                    client.setSearchButton(new ViewClientButton(client));
                 }
             }
         });
@@ -44,27 +47,30 @@ public class MainFrame extends JFrame {
             public void selected(int index) {
                 if (index == 0) {
                     setForm(add);
-                    add = new AddPanel();
+                    add.tableAddProduct.setModel(add.set.setTable());
+                    add.setAddButton(new AddPanelButton(add));
                 } else if (index == 1) {
                     setForm(view);
-                    view = new ViewProductPanel();
+                    view.tableViewProduct.setModel(view.set.setTable());
+                    view.setSearchProduct(new ViewProductButton(view));
                 }  else if (index == 2) {
                     setForm(delete);
-                    delete = new DeletePanel();
+                    delete.tableDeleteProduct.setModel(delete.set.setTable());
+                    delete.setDeleteButton(new DeleteProductButton(delete));
                 }  else if (index == 3) {
                     setForm(edit);
-                    edit = new EditPanel();
+                    edit.tableEditProduct.setModel(edit.set.setTable());
+                    edit.setEditButton(new EditProductButton(edit));
                 }
             }
         });
     }
 
-
     private void setForm(JComponent com) {
         MainPanel.removeAll();
         MainPanel.add(com);
-        MainPanel.repaint();
         MainPanel.revalidate();
+        MainPanel.repaint();
     }
 
     private void initComponents() {

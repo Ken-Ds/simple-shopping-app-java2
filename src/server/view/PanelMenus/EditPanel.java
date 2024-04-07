@@ -21,43 +21,20 @@ public class EditPanel extends JPanel {
     private JLabel labelQuantity = new JLabel();
     private JLabel labelStatus = new JLabel(); // Added label for status
     private JPanel panelTop = new JPanel();
-    private JTable tableEditProduct = new JTable();
+    public JTable tableEditProduct = new JTable();
     private JTextField txtDescription = new JTextField();
     private JTextField txtName = new JTextField();
     private JTextField txtPrice = new JTextField();
     private JTextField txtQuantity = new JTextField();
     private JTextField txtStatus = new JTextField(); // Added text field for status
-    private SetJTable set = new SetJTable();
+    public SetJTable set = new SetJTable();
 
     public EditPanel() {
         initComponents();
     }
 
     private void initComponents() {
-        buttonEnterEdit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedRow = tableEditProduct.getSelectedRow();
-                if (selectedRow >= 0) {
-                    String id = tableEditProduct.getModel().getValueAt(selectedRow, 0).toString();
-                    String name = returnName();
-                    String price = returnPrice();
-                    String description = returnDescription();
-                    String status = returnStatus();
-                    String quantity = returnQuantity();
-                    editProduct(id, name, price, description,status, Integer.parseInt(quantity));
-                    DefaultTableModel model = (DefaultTableModel) tableEditProduct.getModel();
-                    model.setValueAt(name, selectedRow, 1);
-                    model.setValueAt(price, selectedRow, 2);
-                    model.setValueAt(description, selectedRow, 3);
-                    model.setValueAt(status, selectedRow, 4);
-                    model.setValueAt(quantity, selectedRow, 5);
 
-                }
-
-
-            }
-        });
         tableEditProduct.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -75,7 +52,6 @@ public class EditPanel extends JPanel {
                     txtDescription.setText(description);
                     txtStatus.setText(status);
                     txtQuantity.setText(quantity);
-
                 }
 
             }
@@ -182,5 +158,8 @@ public class EditPanel extends JPanel {
     }
     public String returnStatus(){
         return txtStatus.getText();
+    }
+    public void setEditButton(ActionListener listener){
+        buttonEnterEdit.addActionListener(listener);
     }
 }

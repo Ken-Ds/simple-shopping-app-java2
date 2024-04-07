@@ -29,9 +29,8 @@ public class SetJTable {
             }
             return model;
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     public DefaultTableModel setViewClientTable() {
@@ -39,21 +38,20 @@ public class SetJTable {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("res/accounts.json"))) {
             JsonObject jsonObject = gson.fromJson(bufferedReader, JsonObject.class);
             JsonArray accountList = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
-
-            String[] columnNames = {"Username", "ID"};
+            String[] columnNames = {"ID", "Username"};
             DefaultTableModel model = new DefaultTableModel(columnNames, 0);
             for (int x = 0; x < accountList.size(); x++) {
                 JsonObject account = accountList.get(x).getAsJsonObject();
                 String username = account.get("username").getAsString();
                 String id = account.get("id").getAsString();
-                model.addRow(new Object[]{username, id});
+                model.addRow(new Object[]{id, username});
             }
             return model;
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
+
 
     public static void addProduct(String id, String name, String price, String description,String status, int quantity) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -152,6 +150,25 @@ public class SetJTable {
             throw new RuntimeException("Error reading/parsing JSON", e);
         }
         return matchingProducts;
+    }
+    public static List<JsonObject> searchAccount(String searchKey){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<JsonObject> matchingID = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("res/accounts.json"))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray productList = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
+            for (JsonElement productElement : productList) {
+                JsonObject product = productElement.getAsJsonObject();
+                if (product.get("id").getAsString().equals(searchKey)) {
+                    matchingID.add(product);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("JSON file not found", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading/parsing JSON", e);
+        }
+        return matchingID;
     }
 
 }

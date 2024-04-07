@@ -3,11 +3,8 @@ import common.SetJTable;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import static common.GenerateUniqueId.generateUniqueId;
-import static common.SetJTable.addProduct;
+import java.awt.event.ActionListener;
 
 public class AddPanel extends JPanel {
     private JButton buttonEnterAdd = new JButton();
@@ -18,33 +15,19 @@ public class AddPanel extends JPanel {
     private JLabel labelStatus = new JLabel();
     private JPanel panelTop = new JPanel();
     private JScrollPane scrollTable = new JScrollPane();
-    private JTable tableAddProduct = new JTable();
+    public JTable tableAddProduct = new JTable();
     private JTextField txtDescription = new JTextField();
     private JTextField txtName = new JTextField();
     private JTextField txtPrice = new JTextField();
     private JTextField txtQuantity = new JTextField();
     private JTextField txtStatus = new JTextField();
-    private SetJTable set = new SetJTable();
+    public SetJTable set = new SetJTable();
 
     public AddPanel() {
         initComponents();
     }
 
     private void initComponents() {
-        buttonEnterAdd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String id = generateUniqueId();
-                String name = returnName();
-                String price = returnPrice();
-                String description = returnDescription();
-                int quantity = Integer.parseInt(returnQuantity());
-                String status = returnStatus();
-
-                addProduct(String.valueOf(id), name, price, description,status, quantity);
-                tableAddProduct.setModel(set.setTable());
-            }
-        });
 
         tableAddProduct.setModel(set.setTable());
         tableAddProduct.setEnabled(false);
@@ -62,7 +45,7 @@ public class AddPanel extends JPanel {
         labelQuantity.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));
         labelQuantity.setText("Quantity :");
 
-        labelStatus.setFont(new java.awt.Font("Segoe UI", 0, 13));
+        labelStatus.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));
         labelStatus.setText("Status :");
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +139,9 @@ public class AddPanel extends JPanel {
     }
     public String returnStatus(){
         return txtStatus.getText();
+    }
+    public void setAddButton(ActionListener listener){
+        buttonEnterAdd.addActionListener(listener);
     }
 
 }

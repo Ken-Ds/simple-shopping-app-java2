@@ -6,8 +6,8 @@ import java.awt.*;
 import javax.swing.*;
 
 public class CardOrder extends JPanel {
-    private JLabel labelOrder;
-    private JLabel labelValue;
+    private JLabel labelOrder = new JLabel();
+    private JLabel labelValue = new JLabel();
 
     public Color getColor1() {
         return color1;
@@ -24,15 +24,13 @@ public class CardOrder extends JPanel {
     public void setColor2(Color color2) {
         this.color2 = color2;
     }
-    private Color color1;
-    private Color color2;
+    private Color color1 = Color.ORANGE;
+    private Color color2 = Color.WHITE;
 
 
     public CardOrder() {
         initComponents();
         setOpaque(false);
-        color1 = Color.ORANGE;
-        color2 = Color.WHITE;
     }
     public void setData(ModelCard data) {
 
@@ -42,9 +40,6 @@ public class CardOrder extends JPanel {
     }
 
     private void initComponents() {
-
-        labelOrder = new JLabel();
-        labelValue = new JLabel();
 
         labelOrder.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         labelOrder.setForeground(new java.awt.Color(255, 255, 255));

@@ -4,6 +4,8 @@ import client.controller.buttons.FormCartDeleteButton;
 import client.controller.buttons.FormCartSearchButton;
 import client.controller.buttons.FormHomeAddButton;
 import client.controller.buttons.FormHomeSearchButton;
+import client.controller.buttons.login.LogInButton;
+import client.controller.buttons.login.SignUpButton;
 import client.model.Connect;
 import client.view.component.ClientMenu;
 import client.view.component.Header;
@@ -14,6 +16,7 @@ import client.view.swing.PanelBorder;
 import common.SetJTable;
 
 import java.awt.Color;
+import java.awt.event.WindowEvent;
 import java.rmi.RemoteException;
 import javax.swing.*;
 
@@ -57,6 +60,12 @@ public class ClientMainFrame extends JFrame {
                     setForm(cart);
                     cart.setButtonDelete(new FormCartDeleteButton(cart));
                     cart.setButtonSearch(new FormCartSearchButton(cart));
+                } else if (index == 6){
+                    dispose();
+                    LogIn logIn = new LogIn();
+                    logIn.setButtonLogIn(new LogInButton(logIn));
+                    logIn.setButtonSignUp(new SignUpButton(logIn));
+                    logIn.setVisible(true);
                 }
             }
         });
@@ -115,4 +124,5 @@ public class ClientMainFrame extends JFrame {
         pack();
         setLocationRelativeTo(null);
     }
+
 }

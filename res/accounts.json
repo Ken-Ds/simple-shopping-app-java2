@@ -34,6 +34,12 @@
         "username": "new",
         "password": "k",
         "cart": {}
+      },
+      {
+        "id": "4",
+        "username": "lee",
+        "password": "miguel",
+        "cart": {}
       }
     ]
   }

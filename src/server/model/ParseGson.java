@@ -195,7 +195,7 @@ public class ParseGson {
         }
         return matchingProducts;
     }
-    public static boolean isUserExist(String username,String password) {
+    public boolean isUserExist(String username,String password) {
         Gson gson = new Gson();
         try (BufferedReader br = new BufferedReader(new FileReader("res/accounts.json"))) {
             JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
@@ -213,7 +213,8 @@ public class ParseGson {
         }
         return false;
     }
-    public static void addAccount(String username, String password) {
+    public boolean addAccount(String username, String password) {
+        boolean added = false;
         try (FileReader reader = new FileReader(accountsDir)) {
             JsonParser jsonParser = new JsonParser();
             JsonObject jsonObject = jsonParser.parse(reader).getAsJsonObject();
@@ -228,24 +229,36 @@ public class ParseGson {
             newAccount.add("cart", new JsonObject());
 
             accountArray.add(newAccount);
-
             try (FileWriter writer = new FileWriter(accountsDir)) {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 gson.toJson(jsonObject, writer);
                 System.out.println("Account added successfully.");
+                added = true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return added;
     }
 
-    public static void main(String[] args) {
-        String username = "newUser";
-        String password = "newPassword";
-
-        addAccount(username, password);
-
+    public boolean isUserNameExist(String username) {
+        Gson gson = new Gson();
+        try (BufferedReader br = new BufferedReader(new FileReader("res/accounts.json"))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray accountList = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
+            for (JsonElement accountElement : accountList) {
+                JsonObject account = accountElement.getAsJsonObject();
+                if (account.get("username").getAsString().equals(username)) {
+                    return true;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("JSON file not found", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading/parsing JSON", e);
+        }
+        return false;
     }
 }

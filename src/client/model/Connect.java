@@ -3,6 +3,7 @@ package client.model;
 import common.Product;
 import common.SharedInterface;
 
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
@@ -15,6 +16,21 @@ public class Connect {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
             return sharedInterface.logIn(userName,password);
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return isAccount;
+    }
+
+    public boolean signUp(String username, String password) throws RemoteException {
+        Boolean isAccount = false;
+        try {
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            SharedInterface sharedInterface = (SharedInterface) registry.lookup("midTeam4");
+            isAccount = sharedInterface.signUp(username,password);
+            if(isAccount){
+                System.out.println("Account Added");
+            }
         }catch (Exception e){
             e.getMessage();
         }

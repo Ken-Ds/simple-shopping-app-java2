@@ -35,6 +35,12 @@
         "username": "newUser",
         "password": "newPassword",
         "cart": {}
+      },
+      {
+        "id": "3",
+        "username": "new",
+        "password": "k",
+        "cart": {}
       }
     ]
   }

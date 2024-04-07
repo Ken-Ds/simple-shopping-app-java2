@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public interface SharedInterface extends Remote {
 
     public boolean logIn(String userName, String password) throws RemoteException;
+
+    public boolean signUp(String username, String password) throws RemoteException;
     public ArrayList<Product> getProducts() throws RemoteException;
     public ArrayList<Product> getCart() throws RemoteException;
 

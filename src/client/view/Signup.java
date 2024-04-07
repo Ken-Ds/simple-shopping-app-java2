@@ -2,10 +2,11 @@ package client.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class Signup extends JFrame {
     private JButton buttonBack = new JButton();
-    private JButton buttonLogIn = new JButton();
+    private JButton buttonSignUp = new JButton();
     private JLabel labelPass = new JLabel();
     private JLabel labelTitle = new JLabel();
     private JLabel labelUsername = new JLabel();
@@ -35,8 +36,8 @@ public class Signup extends JFrame {
         labelPass.setFont(new java.awt.Font("Sitka Display", Font.PLAIN, 17)); // NOI18N
         labelPass.setText("Password");
 
-        buttonLogIn.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
-        buttonLogIn.setText("Sign Up");
+        buttonSignUp.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
+        buttonSignUp.setText("Sign Up");
 
         buttonBack.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 13)); // NOI18N
         buttonBack.setText("Back");
@@ -66,7 +67,7 @@ public class Signup extends JFrame {
                                                 .addComponent(labelTitle)
                                                 .addGap(142, 142, 142))
                                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(buttonLogIn, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(buttonSignUp, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(77, 77, 77))))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(51, 51, 51)
@@ -98,7 +99,7 @@ public class Signup extends JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(textPass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(43, 43, 43)
-                                .addComponent(buttonLogIn)
+                                .addComponent(buttonSignUp)
                                 .addContainerGap(139, Short.MAX_VALUE)
                                 .addComponent(buttonBack)
                                 .addGap(58, 58, 58))
@@ -145,38 +146,17 @@ public class Signup extends JFrame {
 
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    public String returnTxtUserName(){
+        return textUsername.getText();
+    }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Signup().setVisible(true);
-            }
-        });
+    public String returnTxtPassword(){
+        return textPass.getText();
+    }
+    public void setButtonBack(ActionListener actionListener){
+        buttonBack.addActionListener(actionListener);
+    }
+    public void setButtonSignUp(ActionListener actionListener){
+        buttonSignUp.addActionListener(actionListener);
     }
 }

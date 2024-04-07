@@ -1,6 +1,7 @@
 package client.view;
 
 import client.controller.buttons.FormCartDeleteButton;
+import client.controller.buttons.FormCartSearchButton;
 import client.controller.buttons.FormHomeAddButton;
 import client.controller.buttons.FormHomeSearchButton;
 import client.model.Connect;
@@ -55,6 +56,7 @@ public class ClientMainFrame extends JFrame {
                     cart.setCartTable(setJTable.setClientCart(connect.getCart(id)));
                     setForm(cart);
                     cart.setButtonDelete(new FormCartDeleteButton(cart));
+                    cart.setButtonSearch(new FormCartSearchButton(cart));
                 }
             }
         });

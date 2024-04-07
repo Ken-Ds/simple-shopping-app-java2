@@ -1,6 +1,8 @@
 package client.view.form;
 
 
+import common.SetJTable;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -15,6 +17,7 @@ public class FormCart extends JPanel {
     private JButton deleteButton = new JButton();
     private JToggleButton jToggleButton1 = new JToggleButton();
     private JButton searchButtonCart = new JButton();
+    public SetJTable table = new SetJTable();
 
 
     public FormCart() {
@@ -106,4 +109,8 @@ public class FormCart extends JPanel {
     public String returnName(){
         return cartSearchBar.getText();
     }
+    public  void setButtonSearch(ActionListener listener){
+        searchButtonCart.addActionListener(listener);
+    }
+
 }

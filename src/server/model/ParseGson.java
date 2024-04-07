@@ -287,11 +287,13 @@ public class ParseGson {
             for (JsonElement accountElement : accountList) {
                 JsonObject account = accountElement.getAsJsonObject();
                 if (account.get("username").getAsString().equals(username)) {
-                    JsonArray cartList = account.getAsJsonObject("cart").getAsJsonArray("product");
-                    for (JsonElement productElement : cartList) {
-                        JsonObject product = productElement.getAsJsonObject();
-                        if (product.get("name").getAsString().equals(name)) {
-                            matchingProducts.add(product);
+                    if (account.has("cart")) {
+                        JsonArray cartList = account.getAsJsonObject("cart").getAsJsonArray("product");
+                        for (JsonElement productElement : cartList) {
+                            JsonObject product = productElement.getAsJsonObject();
+                            if (product.get("name").getAsString().equals(name)) {
+                                matchingProducts.add(product);
+                            }
                         }
                     }
                 }

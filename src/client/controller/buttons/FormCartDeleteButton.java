@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FormCartDeleteButton implements ActionListener {
+
     private FormCart formCart;
 
     public FormCartDeleteButton(FormCart formCart){
@@ -18,13 +19,13 @@ public class FormCartDeleteButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         int selectedRow = formCart.cartTable.getSelectedRow();
-        if(selectedRow >= 0){
+        if(selectedRow >= 0) {
             DefaultTableModel model = (DefaultTableModel) formCart.cartTable.getModel();
-            String productName = (String) model.getValueAt(selectedRow,0);
-            String productPrice = (String) model.getValueAt(selectedRow,2);
-            String productDescription = (String) model.getValueAt(selectedRow,1);
+            String productName = (String) model.getValueAt(selectedRow, 0);
+            String productPrice = (String) model.getValueAt(selectedRow, 2);
+            String productDescription = (String) model.getValueAt(selectedRow, 1);
             Connect connect = new Connect(ClientMainFrame.ip);
-            connect.removeFromCart(ClientMainFrame.id, new Product(productName,productPrice,productDescription));
+            connect.removeFromCart(ClientMainFrame.id, new Product(productName, productPrice, productDescription));
         }
     }
 }

@@ -51,7 +51,7 @@ public class DashboardPanel extends JPanel {
 
         panelDashboard.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelStats.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 16));
+        labelStats.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 16));
         labelStats.setText("Statistics");
 
         table.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 18));

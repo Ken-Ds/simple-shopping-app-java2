@@ -36,7 +36,6 @@ public class FormCart extends JPanel {
 
         cartSearchBar.setFont(new Font("Segoe UI", Font.ITALIC, 14));
         cartSearchBar.setForeground(new Color(153, 153, 153));
-        cartSearchBar.setText("Search here...");
 
 
         buyButton.setBackground(new Color(204, 204, 204));

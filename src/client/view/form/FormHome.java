@@ -34,7 +34,6 @@ public class FormHome extends JPanel {
 
         homeSearchBar.setFont(new Font("Segoe UI", Font.ITALIC, 14));
         homeSearchBar.setForeground(new Color(153, 153, 153));
-        homeSearchBar.setText("Search here...");
 
         addButton.setBackground(new Color(204, 204, 204));
         addButton.setFont(new Font("Segoe UI Black", Font.BOLD, 14));

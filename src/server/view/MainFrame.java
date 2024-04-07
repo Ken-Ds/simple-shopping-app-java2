@@ -1,6 +1,7 @@
 package server.view;
 
 import server.controller.buttons.*;
+import server.view.Component.CardProfit;
 import server.view.Component.Header;
 import server.view.Component.PanelBoard;
 import server.view.EventMenu.EventMenuSelected;
@@ -9,6 +10,8 @@ import server.view.PanelMenus.*;
 
 import javax.swing.*;
 import java.awt.*;
+
+import static common.SetJTable.countUniqueProducts;
 
 public class MainFrame extends JFrame {
     private DashboardPanel dashboard = new DashboardPanel();
@@ -31,8 +34,12 @@ public class MainFrame extends JFrame {
             public void selected(int index) {
                 if (index == 0) {
                     setForm(dashboard);
+                    CardProfit cardProfit = new CardProfit();
+                    cardProfit.labelValue.setText(String.valueOf(countUniqueProducts()));
                 } else if (index == 1) {
                     setForm(dashboard);
+                    CardProfit cardProfit = new CardProfit();
+                    cardProfit.labelValue.setText(String.valueOf(countUniqueProducts()));
                 } else if (index == 2) {
                     setForm(client);
                     client.tableViewClient.setModel(client.set.setViewClientTable());

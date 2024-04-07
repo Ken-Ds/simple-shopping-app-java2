@@ -1,13 +1,16 @@
 package server.view.Component;
 
+import common.SetJTable;
 import server.view.MenuClass.ModelCard;
 
 import java.awt.*;
 import javax.swing.*;
 
+import static common.SetJTable.countUniqueProducts;
+
 public class CardProfit extends JPanel {
     private JLabel labelProfit = new JLabel();
-    private JLabel labelValue = new JLabel();
+    public JLabel labelValue = new JLabel();
 
     public Color getColor1() {
         return color1;
@@ -29,29 +32,28 @@ public class CardProfit extends JPanel {
 
     public CardProfit() {
         initComponents();
+        labelValue.setText(String.valueOf(countUniqueProducts()));
         setOpaque(false);
         color1 = Color.ORANGE;
         color2 = Color.WHITE;
     }
     public void setData(ModelCard data) {
-
         labelProfit.setText(data.getTitle());
         labelValue.setText(data.getValues());
-
     }
 
     private void initComponents() {
 
         setBackground(new Color(204, 204, 204));
 
-        labelProfit.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        labelProfit.setForeground(new Color(255, 255, 255));
-        labelProfit.setText("Profit");
-
         labelValue.setBackground(new Color(255, 255, 255));
         labelValue.setFont(new Font("Segoe UI", Font.BOLD, 14));
         labelValue.setForeground(new Color(255, 255, 255));
-        labelValue.setText("Values");
+
+
+        labelProfit.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        labelProfit.setForeground(new Color(255, 255, 255));
+        labelProfit.setText("Products");
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);

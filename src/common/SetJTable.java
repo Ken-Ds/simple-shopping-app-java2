@@ -181,6 +181,23 @@ public class SetJTable {
         }
         return uniqueAccounts.size();
     }
+    public static int countUniqueProducts(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Set<String> uniqueProducts = new HashSet<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray productList = jsonObject.getAsJsonObject("data").getAsJsonArray("product");
+            for (JsonElement accountElement : productList) {
+                JsonObject product = accountElement.getAsJsonObject();
+                uniqueProducts.add(product.get("id").getAsString());
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("JSON file not found", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading/parsing JSON", e);
+        }
+        return uniqueProducts.size();
+    }
 
     public static DefaultTableModel setProductClientTable(ArrayList<Product> productsList){
         String[] columnNames = {"Name", "Description", "Price", "Quantity"};

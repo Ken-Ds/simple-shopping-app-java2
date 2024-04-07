@@ -5,7 +5,9 @@ import com.google.gson.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SetJTable {
     public DefaultTableModel setTable() {
@@ -104,7 +106,7 @@ public class SetJTable {
         }
     }
 
-    public static void editProduct(String id, String name, String price, String description,String status, int quantity) {
+    public static void editProduct(String id, String name, String price, String description, String status, int quantity) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
             JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
@@ -152,7 +154,8 @@ public class SetJTable {
         }
         return matchingProducts;
     }
-    public static List<JsonObject> searchAccount(String searchKey){
+
+    public static List<JsonObject> searchAccount(String searchKey) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<JsonObject> matchingID = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("res/accounts.json"))) {
@@ -170,6 +173,23 @@ public class SetJTable {
             throw new RuntimeException("Error reading/parsing JSON", e);
         }
         return matchingID;
+    }
+    public static int countUniqueAccounts() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Set<String> uniqueAccounts = new HashSet<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("res/accounts.json"))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray accountList = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
+            for (JsonElement accountElement : accountList) {
+                JsonObject account = accountElement.getAsJsonObject();
+                uniqueAccounts.add(account.get("username").getAsString());
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("JSON file not found", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading/parsing JSON", e);
+        }
+        return uniqueAccounts.size();
     }
 
 }

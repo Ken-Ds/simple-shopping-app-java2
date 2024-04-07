@@ -5,6 +5,8 @@ import server.view.MenuClass.ModelCard;
 import javax.swing.*;
 import java.awt.*;
 
+import static common.SetJTable.countUniqueAccounts;
+
 public class CardNumUser extends JPanel {
     private JLabel labelUser = new JLabel();
     private JLabel labelValue = new JLabel();
@@ -29,12 +31,14 @@ public class CardNumUser extends JPanel {
 
     public CardNumUser() {
         initComponents();
+        labelUser.setText(String.valueOf(countUniqueAccounts()));
         setOpaque(false);
     }
-    public void setData(ModelCard data) {
+    public void setData(ModelCard data, String userValue) {
 
         labelUser.setText(data.getTitle());
         labelValue.setText(data.getValues());
+        labelUser.setVisible(true);
 
     }
 

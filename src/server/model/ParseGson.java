@@ -261,4 +261,41 @@ public class ParseGson {
         }
         return false;
     }
+    public static List<JsonObject> searchProductInUserCartClient(String username, String name) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<JsonObject> matchingProducts = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("res/accounts.json"))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray accountList = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
+            for (JsonElement accountElement : accountList) {
+                JsonObject account = accountElement.getAsJsonObject();
+                if (account.get("username").getAsString().equals(username)) {
+                    JsonArray cartList = account.getAsJsonObject("cart").getAsJsonArray("product");
+                    for (JsonElement productElement : cartList) {
+                        JsonObject product = productElement.getAsJsonObject();
+                        if (product.get("name").getAsString().equals(name)) {
+                            matchingProducts.add(product);
+                        }
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("JSON file not found", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading/parsing JSON", e);
+        }
+        return matchingProducts;
+    }
+
+    public static void main(String[] args) {
+        String username = "Freddie";
+        String name = "Stick";
+
+        List<JsonObject> matchingProducts = searchProductInUserCartClient(username, name);
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        System.out.println(gson.toJson(matchingProducts));
+    }
 }
+
+

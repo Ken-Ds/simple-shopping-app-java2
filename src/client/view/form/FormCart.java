@@ -103,4 +103,7 @@ public class FormCart extends JPanel {
     public void setButtonDelete(ActionListener listener){
         deleteButton.addActionListener(listener);
     }
+    public String returnName(){
+        return cartSearchBar.getText();
+    }
 }

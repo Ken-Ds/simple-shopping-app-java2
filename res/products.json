@@ -1,1 +1,22 @@
-{"accounts":{"account":[{"id":"0","username":"Freddie","password":"kahitanona","cart":{"product":[{"id":"6","name":"Stick","price":"10","description":"Looks like a gun","status":"On Sale","quantity":5}]}},{"id":"1","username":"miguel","password":"miguel","cart":{}}]}}
+{
+  "data": {
+    "product":[
+      {
+        "id": "0",
+        "name": "Rdsds",
+        "price": "2",
+        "description": "Iphone",
+        "status": "On sale",
+        "quantity": 1
+      },
+      {
+        "id": "1",
+        "name": "Stick",
+        "price": "10",
+        "description": "Looks like a gun",
+        "status": "On Sale",
+        "quantity": 5
+      }
+    ]
+  }
+}

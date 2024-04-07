@@ -99,6 +99,7 @@ public class ParseGson {
                     newToCart.addProperty("price", product1.getPrice());
                     newToCart.addProperty("description", product1.getDescription());
                     newToCart.addProperty("status", product1.getStatus());
+                    cart.add(newToCart);
                     break;
                 }
             }
@@ -133,7 +134,7 @@ public class ParseGson {
                     }
                 }
             }
-            try (FileWriter writer = new FileWriter("res/products.json")) {
+            try (FileWriter writer = new FileWriter("res/accounts.json")) {
                 gson.toJson(jsonObject, writer);
             } catch (IOException e) {
                 throw new RuntimeException("Error writing to JSON file", e);

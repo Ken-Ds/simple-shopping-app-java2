@@ -5,6 +5,8 @@ import server.view.MenuClass.ModelCard;
 import java.awt.*;
 import javax.swing.*;
 
+import static common.SetJTable.numOfBoughtProducts;
+
 public class CardOrder extends JPanel {
     private JLabel labelOrder = new JLabel();
     private JLabel labelValue = new JLabel();
@@ -30,6 +32,7 @@ public class CardOrder extends JPanel {
 
     public CardOrder() {
         initComponents();
+        labelValue.setText(String.valueOf(numOfBoughtProducts()));
         setOpaque(false);
     }
     public void setData(ModelCard data) {

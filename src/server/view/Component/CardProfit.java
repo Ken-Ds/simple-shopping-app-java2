@@ -1,6 +1,6 @@
 package server.view.Component;
 
-import common.SetJTable;
+
 import server.view.MenuClass.ModelCard;
 
 import java.awt.*;

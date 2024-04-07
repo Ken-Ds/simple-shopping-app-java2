@@ -238,4 +238,18 @@ public class SetJTable {
         }
         return model;
     }
+
+    public static int numOfBoughtProducts(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        int num = 0;
+        JsonArray jsonArray= new JsonArray();
+        try (BufferedReader reader = new BufferedReader(new FileReader("res/boughtproducts.json"))){
+            JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
+            JsonArray accountList = jsonObject.getAsJsonObject("data").getAsJsonArray("items");
+            num = accountList.size();
+        } catch (Exception e){
+            e.getMessage();
+        }
+        return num;
+    }
 }

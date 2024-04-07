@@ -12,7 +12,7 @@ public class FormCart extends JPanel {
     private JTextField cartSearchBar = new JTextField();
     public JTable cartTable = new JTable();
     private JLabel cartTitle = new JLabel();
-    private JButton deleteButton = new JButton();
+    private JButton buyButton = new JButton();
     private JToggleButton jToggleButton1 = new JToggleButton();
     private JButton searchButtonCart = new JButton();
 
@@ -36,9 +36,9 @@ public class FormCart extends JPanel {
         cartSearchBar.setText("Search here...");
 
 
-        deleteButton.setBackground(new Color(204, 204, 204));
-        deleteButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        deleteButton.setText("DELETE");
+        buyButton.setBackground(new Color(204, 204, 204));
+        buyButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        buyButton.setText("BUY");
 
         searchButtonCart.setBackground(new Color(204, 204, 204));
         searchButtonCart.setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -56,7 +56,7 @@ public class FormCart extends JPanel {
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(searchButtonCart)
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(deleteButton))
+                                                .addComponent(buyButton))
                                         .addGroup(cartHeaderPanelLayout.createSequentialGroup()
                                                 .addGap(378, 378, 378)
                                                 .addComponent(cartTitle)))
@@ -68,7 +68,7 @@ public class FormCart extends JPanel {
                                 .addGap(12, 12, 12)
                                 .addGroup(cartHeaderPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                         .addGroup(cartHeaderPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(deleteButton)
+                                                .addComponent(buyButton)
                                                 .addComponent(searchButtonCart))
                                         .addGroup(cartHeaderPanelLayout.createSequentialGroup()
                                                 .addComponent(cartTitle, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
@@ -101,7 +101,7 @@ public class FormCart extends JPanel {
         cartTable.setModel(model);
     }
     public void setButtonDelete(ActionListener listener){
-        deleteButton.addActionListener(listener);
+        buyButton.addActionListener(listener);
     }
     public String returnName(){
         return cartSearchBar.getText();

@@ -1,5 +1,6 @@
 package server.view;
 
+import common.SetJTable;
 import server.controller.buttons.*;
 import server.view.Component.CardProfit;
 import server.view.Component.Header;
@@ -33,10 +34,12 @@ public class MainFrame extends JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
+                    dashboard.setDashboard(new SetJTable().setDashBord());
                     setForm(dashboard);
                     CardProfit cardProfit = new CardProfit();
                     cardProfit.labelValue.setText(String.valueOf(countUniqueProducts()));
                 } else if (index == 1) {
+                    dashboard.setDashboard(new SetJTable().setDashBord());
                     setForm(dashboard);
                     CardProfit cardProfit = new CardProfit();
                     cardProfit.labelValue.setText(String.valueOf(countUniqueProducts()));

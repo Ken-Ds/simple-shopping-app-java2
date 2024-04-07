@@ -31,6 +31,20 @@ public class SetJTable {
         return model;
     }
 
+    public DefaultTableModel setDashBord() {
+        JsonArray itemsList = parseGson.getBoughtProducts();
+        String[] columnNames = {"User ", "Items Bought"};
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+        for (int i = 0; i < itemsList.size(); i++) {
+            JsonObject item = itemsList.get(i).getAsJsonObject();
+            System.out.println("item" + item);
+            String user = item.get("user").getAsString();
+            String product = item.get("product").getAsString();
+            model.addRow(new Object[]{user,product});
+        }
+        return model;
+    }
+
     public DefaultTableModel setViewClientTable() {
         JsonArray accountList = parseGson.getAccounts();
         String[] columnNames = {"ID", "Username"};

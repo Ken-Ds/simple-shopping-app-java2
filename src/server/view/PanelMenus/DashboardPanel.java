@@ -7,6 +7,7 @@ import server.view.Component.PanelBoard;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class DashboardPanel extends JPanel {
     private boolean selected;
@@ -54,17 +55,6 @@ public class DashboardPanel extends JPanel {
         labelStats.setText("Statistics");
 
         table.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 18));
-        table.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null}
-                },
-                new String [] {
-                        "Name", "Product", "Product Status"
-                }
-        ));
         jScrollPane1.setViewportView(table);
 
         GroupLayout panelDashboardLayout = new GroupLayout(panelDashboard);
@@ -120,5 +110,9 @@ public class DashboardPanel extends JPanel {
             g2.fillRoundRect(10, 0, getWidth() - 20, getHeight(), 5, 5);
         }
         super.paintComponent(grphcs);
+    }
+
+    public void setDashboard(DefaultTableModel dashboard){
+        table.setModel(dashboard);
     }
 }

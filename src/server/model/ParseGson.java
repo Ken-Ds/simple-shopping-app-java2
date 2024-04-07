@@ -15,6 +15,8 @@ public class ParseGson {
     public static String productsDir = "res/products.json";
     private static String accountsDir = "res/accounts.json";
 
+    private static String boughtProductsDir = "res/boughtproducts.json";
+
     public JsonArray getProducts(){
         JsonArray jsonArray= new JsonArray();
         try (BufferedReader reader = new BufferedReader(new FileReader(productsDir))){
@@ -37,6 +39,42 @@ public class ParseGson {
             e.getMessage();
         }
         return jsonArray;
+    }
+
+    public JsonArray getBoughtProducts(){
+        JsonArray jsonArray= new JsonArray();
+        try (BufferedReader reader = new BufferedReader(new FileReader(boughtProductsDir))){
+            JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
+            JsonArray accountList = jsonObject.getAsJsonObject("data").getAsJsonArray("items");
+            jsonArray = accountList;
+        } catch (Exception e){
+            e.getMessage();
+        }
+        return jsonArray;
+    }
+
+    public Boolean buyItem(String username, String product){
+        Boolean bought = false;
+        try (BufferedReader br = new BufferedReader(new FileReader(boughtProductsDir))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray itemList = jsonObject.getAsJsonObject("data").getAsJsonArray("items");
+            JsonObject newItem = new JsonObject();
+            newItem.addProperty("user", username);
+            newItem.addProperty("product", product);
+            itemList.add(newItem);
+            try (FileWriter writer = new FileWriter(boughtProductsDir)) {
+                gson.toJson(jsonObject, writer);
+            } catch (IOException e) {
+                throw new RuntimeException("Error writing to JSON file", e);
+            }
+            System.out.println("Product added successfully.");
+            bought = true;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("JSON file not found", e);
+        } catch (IOException | JsonParseException e) {
+            throw new RuntimeException("Error parsing JSON", e);
+        }
+        return bought;
     }
 
     public JsonArray getAccountsCart(String searchKey){
@@ -313,6 +351,8 @@ public class ParseGson {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         System.out.println(gson.toJson(matchingProducts));
     }
+
+
 }
 
 

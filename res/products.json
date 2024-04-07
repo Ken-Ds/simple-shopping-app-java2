@@ -7,7 +7,7 @@
         "price": "2",
         "description": "Iphone",
         "status": "On sale",
-        "quantity": 1
+        "quantity": 0
       },
       {
         "id": "1",
@@ -16,6 +16,14 @@
         "description": "Looks like a gun",
         "status": "On Sale",
         "quantity": 4
+      },
+      {
+        "id": "2",
+        "name": "Rock",
+        "price": "900",
+        "description": "matigas",
+        "status": "On Sale",
+        "quantity": 0
       }
     ]
   }

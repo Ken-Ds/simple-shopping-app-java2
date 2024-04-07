@@ -12,6 +12,7 @@ public class FormCart extends JPanel {
     private JLabel cartTitle = new JLabel();
     private JButton deleteButton = new JButton();
     private JToggleButton jToggleButton1 = new JToggleButton();
+    private JButton searchButtonCart = new JButton();
 
 
     public FormCart() {
@@ -19,6 +20,15 @@ public class FormCart extends JPanel {
     }
 
     private void initComponents() {
+
+        jToggleButton1 = new javax.swing.JToggleButton();
+        cartHeaderPanel = new javax.swing.JPanel();
+        cartTitle = new javax.swing.JLabel();
+        cartSearchBar = new javax.swing.JTextField();
+        deleteButton = new javax.swing.JButton();
+        searchButtonCart = new javax.swing.JButton();
+        cartScroll = new javax.swing.JScrollPane();
+        cartTable = new javax.swing.JTable();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -46,53 +56,90 @@ public class FormCart extends JPanel {
             }
         });
 
-        GroupLayout cartHeaderPanelLayout = new GroupLayout(cartHeaderPanel);
+        searchButtonCart.setBackground(new java.awt.Color(204, 204, 204));
+        searchButtonCart.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        searchButtonCart.setText("Search");
+        searchButtonCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonCartActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout cartHeaderPanelLayout = new javax.swing.GroupLayout(cartHeaderPanel);
         cartHeaderPanel.setLayout(cartHeaderPanelLayout);
         cartHeaderPanelLayout.setHorizontalGroup(
-                cartHeaderPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                cartHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(cartHeaderPanelLayout.createSequentialGroup()
-                                .addGroup(cartHeaderPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(cartHeaderPanelLayout.createSequentialGroup()
-                                                .addGap(378, 378, 378)
-                                                .addComponent(cartTitle))
+                                .addGroup(cartHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(cartHeaderPanelLayout.createSequentialGroup()
                                                 .addGap(57, 57, 57)
-                                                .addComponent(cartSearchBar, GroupLayout.PREFERRED_SIZE, 842, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(deleteButton)))
-                                .addContainerGap(79, Short.MAX_VALUE))
+                                                .addComponent(cartSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(searchButtonCart)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(deleteButton))
+                                        .addGroup(cartHeaderPanelLayout.createSequentialGroup()
+                                                .addGap(378, 378, 378)
+                                                .addComponent(cartTitle)))
+                                .addContainerGap(43, Short.MAX_VALUE))
         );
         cartHeaderPanelLayout.setVerticalGroup(
-                cartHeaderPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(GroupLayout.Alignment.TRAILING, cartHeaderPanelLayout.createSequentialGroup()
+                cartHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(cartHeaderPanelLayout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(cartTitle, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8)
-                                .addGroup(cartHeaderPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(cartSearchBar, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 20, Short.MAX_VALUE))
+                                .addGroup(cartHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(cartHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(deleteButton)
+                                                .addComponent(searchButtonCart))
+                                        .addGroup(cartHeaderPanelLayout.createSequentialGroup()
+                                                .addComponent(cartTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(8, 8, 8)
+                                                .addComponent(cartSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 22, Short.MAX_VALUE))
         );
+
+        cartTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String [] {
+                        "PRODUCT", "DESCRIPTION", "STOCKS", "PRICE"
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         cartScroll.setViewportView(cartTable);
 
-        GroupLayout layout = new GroupLayout(this);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(cartHeaderPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cartHeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cartScroll)
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addComponent(cartHeaderPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cartHeaderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(cartScroll, GroupLayout.PREFERRED_SIZE, 565, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cartScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0))
         );
     }
 
     private void cartSearchBarActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+    private void searchButtonCartActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 

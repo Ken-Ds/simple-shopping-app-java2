@@ -10,6 +10,7 @@ import javax.swing.*;
 import client.view.modelMenu.ModelMenu;
 import client.view.swing.ListMenu;
 
+
 public class ClientMenu extends JPanel {
     private JSeparator jSeparator2 = new JSeparator();
     private ListMenu<String> listMenu1 = new ListMenu<>();

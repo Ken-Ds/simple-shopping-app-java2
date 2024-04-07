@@ -8,18 +8,12 @@
         "cart": {
           "product": [
             {
-              "id": "",
-              "name": "Rock",
-              "price": "20",
-              "description": "Matigas",
-              "status": ""
-            },
-            {
-              "id": "2",
-              "name": "Hallow",
+              "id": "4",
+              "name": "Rdsds",
               "price": "2",
-              "description": "Matigas",
-              "status": ""
+              "description": "Iphone",
+              "status": "On sale",
+              "quantity": 1
             }
           ]
         }

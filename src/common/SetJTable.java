@@ -1,6 +1,7 @@
 package common;
 
 import com.google.gson.*;
+import server.model.ParseGson;
 
 import javax.swing.table.DefaultTableModel;
 import java.io.*;
@@ -10,48 +11,37 @@ import java.util.List;
 import java.util.Set;
 
 public class SetJTable {
+    private ParseGson parseGson = new ParseGson();
     public DefaultTableModel setTable() {
-        Gson gson = new Gson();
-        try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
-            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
-            JsonArray productList = jsonObject.getAsJsonObject("data").getAsJsonArray("product");
+        JsonArray productList = parseGson.getProducts();
 
-            String[] columnNames = {"ID", "Name", "Price", "Description", "Status", "Quantity"};
-            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+        String[] columnNames = {"ID", "Name", "Price", "Description", "Status", "Quantity"};
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
-            for (int i = 0; i < productList.size(); i++) {
-                JsonObject product = productList.get(i).getAsJsonObject();
-                String id = product.get("id").getAsString();
-                String name = product.get("name").getAsString();
-                String price = product.get("price").getAsString();
-                String description = product.get("description").getAsString();
-                String status = product.get("status").getAsString();
-                int quantity = product.get("quantity").getAsInt();
-                model.addRow(new Object[]{id, name, price, description, status, quantity});
-            }
-            return model;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        for (int i = 0; i < productList.size(); i++) {
+            JsonObject product = productList.get(i).getAsJsonObject();
+            String id = product.get("id").getAsString();
+            String name = product.get("name").getAsString();
+            String price = product.get("price").getAsString();
+            String description = product.get("description").getAsString();
+            String status = product.get("status").getAsString();
+            int quantity = product.get("quantity").getAsInt();
+            model.addRow(new Object[]{id, name, price, description, status, quantity});
         }
+        return model;
     }
 
     public DefaultTableModel setViewClientTable() {
-        Gson gson = new Gson();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("res/accounts.json"))) {
-            JsonObject jsonObject = gson.fromJson(bufferedReader, JsonObject.class);
-            JsonArray accountList = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
-            String[] columnNames = {"ID", "Username"};
-            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-            for (int x = 0; x < accountList.size(); x++) {
-                JsonObject account = accountList.get(x).getAsJsonObject();
-                String username = account.get("username").getAsString();
-                String id = account.get("id").getAsString();
-                model.addRow(new Object[]{id, username});
-            }
-            return model;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        JsonArray accountList = parseGson.getAccounts();
+        String[] columnNames = {"ID", "Username"};
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+        for (int x = 0; x < accountList.size(); x++) {
+            JsonObject account = accountList.get(x).getAsJsonObject();
+            String username = account.get("username").getAsString();
+            String id = account.get("id").getAsString();
+            model.addRow(new Object[]{id, username});
         }
+        return model;
     }
 
 
@@ -192,4 +182,30 @@ public class SetJTable {
         return uniqueAccounts.size();
     }
 
+    public static DefaultTableModel setProductClientTable(ArrayList<Product> productsList){
+        String[] columnNames = {"Name", "Description", "Price", "Quantity"};
+        DefaultTableModel model = new DefaultTableModel(columnNames,0);
+        for (Product product: productsList){
+            String name = product.getName();
+            String description = product.getDescription();
+            String price = product.getPrice();
+            int quantity = product.getQuantity();
+            model.addRow(new Object[]{name,description,price,quantity});
+        }
+        return model;
+    }
+
+    public DefaultTableModel setClientCart(ArrayList<Product> cart){
+        String[] columnNames = {"Name", "Description", "Price"};
+        DefaultTableModel model = new DefaultTableModel(columnNames,0);
+        System.out.println("s");
+        for (Product product: cart){
+            String name = product.getName();
+            String description = product.getDescription();
+            String price = product.getPrice();
+            System.out.println(name);
+            model.addRow(new Object[]{name,description,price});
+        }
+        return model;
+    }
 }

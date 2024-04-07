@@ -1,11 +1,14 @@
 package client.view;
 
+import client.model.Connect;
 import client.view.component.ClientMenu;
 import client.view.component.Header;
 import client.view.event.EventMenuSelected;
 import client.view.form.FormCart;
 import client.view.form.FormHome;
 import client.view.swing.PanelBorder;
+import common.SetJTable;
+import server.model.ParseGson;
 
 import java.awt.Color;
 import javax.swing.*;
@@ -26,8 +29,16 @@ public class ClientMainFrame extends JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
+                    ParseGson parseGson = new ParseGson();
+                    SetJTable setJTable = new SetJTable();
+                    Connect connect = new Connect();
+                    home.setHomeTable(setJTable.setProductClientTable(connect.getProducts()));
                     setForm(home);
                 } else if (index == 2) {
+                    ParseGson parseGson = new ParseGson();
+                    SetJTable setJTable = new SetJTable();
+                    Connect connect = new Connect();
+                    cart.setCartTable(setJTable.setClientCart(connect.getCart()));
                     setForm(cart);
                 }
             }
@@ -86,30 +97,5 @@ public class ClientMainFrame extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }
-
-    public static void main(String args[]) {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClientMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClientMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClientMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClientMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ClientMainFrame().setVisible(true);
-            }
-        });
     }
 }

@@ -2,6 +2,7 @@ package client.view.form;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class FormCart extends JPanel {
     private JPanel cartHeaderPanel = new JPanel();
@@ -72,26 +73,6 @@ public class FormCart extends JPanel {
                                         .addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 20, Short.MAX_VALUE))
         );
-
-        cartTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "PRODUCT", "DESCRIPTION", "STOCKS", "PRICE"
-                }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                    false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         cartScroll.setViewportView(cartTable);
 
         GroupLayout layout = new GroupLayout(this);
@@ -117,5 +98,9 @@ public class FormCart extends JPanel {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    }
+
+    public void setCartTable(DefaultTableModel model){
+        cartTable.setModel(model);
     }
 }

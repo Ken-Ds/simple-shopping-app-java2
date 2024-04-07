@@ -6,12 +6,11 @@ import java.awt.*;
 public class Signup extends JFrame {
     private JButton buttonBack = new JButton();
     private JButton buttonLogIn = new JButton();
-    private JPanel jPanel2 = new JPanel();
     private JLabel labelPass = new JLabel();
     private JLabel labelTitle = new JLabel();
     private JLabel labelUsername = new JLabel();
     private JPanel mainPanel = new JPanel();
-    private JPanel panelSignUp = new JPanel();
+    private JPanel jPanel2 = new JPanel();
     private JTextField textPass = new JTextField();
     private JTextField textUsername = new JTextField();
 
@@ -23,7 +22,7 @@ public class Signup extends JFrame {
     private void initComponents() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        panelSignUp.setBackground(new java.awt.Color(253, 245, 223));
+        mainPanel.setBackground(new java.awt.Color(253, 245, 223));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -105,18 +104,18 @@ public class Signup extends JFrame {
                                 .addGap(58, 58, 58))
         );
 
-        GroupLayout panelSignUpLayout = new GroupLayout(panelSignUp);
-        panelSignUp.setLayout(panelSignUpLayout);
-        panelSignUpLayout.setHorizontalGroup(
-                panelSignUpLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(panelSignUpLayout.createSequentialGroup()
+        GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+                mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addGap(178, 178, 178)
                                 .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(186, Short.MAX_VALUE))
         );
-        panelSignUpLayout.setVerticalGroup(
-                panelSignUpLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(panelSignUpLayout.createSequentialGroup()
+        mainPanelLayout.setVerticalGroup(
+                mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addGap(17, 17, 17)
                                 .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(20, Short.MAX_VALUE))
@@ -127,11 +126,11 @@ public class Signup extends JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(panelSignUp, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(panelSignUp, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pack();
 

@@ -1,15 +1,11 @@
 package server.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import common.Product;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParseGson {
     public static Gson gson = new Gson();
@@ -146,4 +142,24 @@ public class ParseGson {
         }
         return removed;
     }
+    public static List<JsonObject> searchProductByNameClient(String name) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<JsonObject> matchingProducts = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("res/products.json"))) {
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            JsonArray productList = jsonObject.getAsJsonObject("data").getAsJsonArray("product");
+            for (JsonElement productElement : productList) {
+                JsonObject product = productElement.getAsJsonObject();
+                if (product.get("name").getAsString().equals(name)) {
+                    matchingProducts.add(product);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("JSON file not found", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading/parsing JSON", e);
+        }
+        return matchingProducts;
+    }
 }
+

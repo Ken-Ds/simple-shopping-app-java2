@@ -5,6 +5,7 @@ import client.view.ClientMainFrame;
 import client.view.form.FormHome;
 import common.Product;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +25,11 @@ public class FormHomeAddButton implements ActionListener {
             String productDescription = (String) model.getValueAt(selectedRow,1);
             Product product = new Product(productName,productPrice,productDescription);
             Connect connect = new Connect(ClientMainFrame.ip);
-            connect.addToCart(ClientMainFrame.id,product );
+            if(connect.addToCart(ClientMainFrame.id, product)) {
+                JOptionPane.showMessageDialog(formHome,"Product added to cart.");
+            }else{
+                JOptionPane.showMessageDialog(formHome,"Product not added to cart.");
+            }
             model.removeRow(selectedRow);
         }
     }

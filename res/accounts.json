@@ -13,6 +13,50 @@
               "price": "10",
               "description": "Looks like a gun",
               "status": "On Sale"
+            },
+            {
+              "id": "1",
+              "name": "Stick",
+              "price": "10",
+              "description": "Looks like a gun",
+              "status": "On Sale"
+            },
+            {
+              "id": "1",
+              "name": "Stick",
+              "price": "10",
+              "description": "Looks like a gun",
+              "status": "On Sale"
+            },
+            {
+              "id": "0",
+              "name": "Rdsds",
+              "price": "2",
+              "description": "Iphone",
+              "status": "On sale"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1",
+        "username": "emman",
+        "password": "emman",
+        "cart": {
+          "product": [
+            {
+              "id": "1",
+              "name": "Stick",
+              "price": "10",
+              "description": "Looks like a gun",
+              "status": "On Sale"
+            },
+            {
+              "id": "4",
+              "name": "dewq",
+              "price": "1",
+              "description": "w",
+              "status": "w"
             }
           ]
         }

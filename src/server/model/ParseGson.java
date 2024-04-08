@@ -127,7 +127,6 @@ public class ParseGson {
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
             JsonArray accounts = jsonObject.getAsJsonObject("accounts").getAsJsonArray("account");
             for (JsonElement accountElement : accounts){
-
                 JsonObject account = accountElement.getAsJsonObject();
                 if(account.get("id").getAsString().equals(id)){
                     JsonArray cart = account.getAsJsonObject("cart").getAsJsonArray("product");
@@ -135,15 +134,15 @@ public class ParseGson {
                     if (product1.getQuantity() > 0) {
                         JsonObject newToCart = new JsonObject();
                         newToCart.addProperty("id", product1.getId());
-
                         newToCart.addProperty("name", product1.getName());
                         newToCart.addProperty("price", product1.getPrice());
                         newToCart.addProperty("description", product1.getDescription());
                         newToCart.addProperty("status", product1.getStatus());
-
                         cart.add(newToCart);
                         reduceQuantity(product1.getId());
                         break;
+                    }else{
+                        return false;
                     }
                 }
             }

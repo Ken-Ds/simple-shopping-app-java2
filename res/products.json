@@ -7,7 +7,7 @@
         "price": "2",
         "description": "Iphone",
         "status": "On sale",
-        "quantity": 1
+        "quantity": 0
       },
       {
         "id": "1",
@@ -15,7 +15,7 @@
         "price": "10",
         "description": "Looks like a gun",
         "status": "On Sale",
-        "quantity": 10
+        "quantity": 7
       },
       {
         "id": "2",
@@ -31,6 +31,14 @@
         "price": "2",
         "description": "w",
         "status": "2",
+        "quantity": 0
+      },
+      {
+        "id": "4",
+        "name": "dewq",
+        "price": "1",
+        "description": "w",
+        "status": "w",
         "quantity": 0
       }
     ]

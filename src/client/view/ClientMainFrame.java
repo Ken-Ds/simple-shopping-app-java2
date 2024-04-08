@@ -16,7 +16,6 @@ import client.view.swing.PanelBorder;
 import common.SetJTable;
 
 import java.awt.Color;
-import java.awt.event.WindowEvent;
 import java.rmi.RemoteException;
 import javax.swing.*;
 

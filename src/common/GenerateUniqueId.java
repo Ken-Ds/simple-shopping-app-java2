@@ -8,7 +8,6 @@ import com.google.gson.JsonObject;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class GenerateUniqueId {
     public static String generateUniqueId() {

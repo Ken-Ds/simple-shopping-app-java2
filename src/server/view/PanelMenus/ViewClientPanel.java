@@ -5,7 +5,6 @@ import common.SetJTable;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 public class ViewClientPanel extends JPanel {
     private JButton buttonSearch = new JButton();

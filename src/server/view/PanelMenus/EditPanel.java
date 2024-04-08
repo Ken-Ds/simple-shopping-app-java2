@@ -3,14 +3,10 @@ package server.view.PanelMenus;
 import common.SetJTable;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-
-import static common.SetJTable.editProduct;
 
 public class EditPanel extends JPanel {
     private JButton buttonEnterEdit = new JButton();
@@ -19,14 +15,14 @@ public class EditPanel extends JPanel {
     private JLabel labelName = new JLabel();
     private JLabel labelPrice = new JLabel();
     private JLabel labelQuantity = new JLabel();
-    private JLabel labelStatus = new JLabel(); // Added label for status
+    private JLabel labelStatus = new JLabel();
     private JPanel panelTop = new JPanel();
     public JTable tableEditProduct = new JTable();
     private JTextField txtDescription = new JTextField();
     private JTextField txtName = new JTextField();
     private JTextField txtPrice = new JTextField();
     private JTextField txtQuantity = new JTextField();
-    private JTextField txtStatus = new JTextField(); // Added text field for status
+    private JTextField txtStatus = new JTextField();
     public SetJTable set = new SetJTable();
 
     public EditPanel() {
@@ -74,7 +70,7 @@ public class EditPanel extends JPanel {
         labelQuantity.setText("Quantity :");
 
         labelStatus.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));
-        labelStatus.setText("Status :"); // Set label text for status
+        labelStatus.setText("Status :");
 
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

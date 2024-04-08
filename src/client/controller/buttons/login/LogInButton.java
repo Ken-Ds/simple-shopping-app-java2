@@ -2,9 +2,7 @@ package client.controller.buttons.login;
 
 import client.model.Connect;
 import client.view.ClientMainFrame;
-import client.view.ClientView;
 import client.view.LogIn;
-import server.view.MainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -7,7 +7,6 @@ import java.util.List;
 public class Cart implements Serializable {
     private final Account user;
     private List<Product> products;
-
     public Cart() {
         this.user = null; // Or provide a default user
         this.products = new ArrayList<>();

@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static common.SetJTable.deleteProduct;
-import static common.SetJTable.editProduct;
+
 
 public class DeleteProductButton implements ActionListener {
     private DeletePanel deletePanel;

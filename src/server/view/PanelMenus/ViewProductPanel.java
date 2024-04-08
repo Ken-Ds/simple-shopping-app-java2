@@ -1,15 +1,8 @@
 package server.view.PanelMenus;
-import com.google.gson.JsonObject;
 import common.SetJTable;
-
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
-
-import static common.SetJTable.searchProductByName;
 
 public class ViewProductPanel extends JPanel {
     private JButton buttonViewProd = new JButton();

@@ -6,8 +6,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 
-import static common.SetJTable.deleteProduct;
-
 public class DeletePanel extends JPanel {
     private JToggleButton buttonDelete = new JToggleButton();
     private JScrollPane scrollDelete = new JScrollPane();

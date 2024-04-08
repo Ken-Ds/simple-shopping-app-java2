@@ -137,14 +137,6 @@ public class Signup extends JFrame {
 
     }
 
-    private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {
-
-
-    }
-
-    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {
-
-    }
 
     public String returnTxtUserName(){
         return textUsername.getText();

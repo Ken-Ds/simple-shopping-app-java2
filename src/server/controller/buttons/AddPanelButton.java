@@ -1,7 +1,6 @@
 package server.controller.buttons;
 
 import com.google.gson.*;
-import common.Product;
 import server.view.PanelMenus.AddPanel;
 
 import javax.swing.*;
@@ -9,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.List;
+
 
 import static common.GenerateUniqueId.generateUniqueId;
 import static common.SetJTable.addProduct;
@@ -29,7 +28,6 @@ public class AddPanelButton implements ActionListener  {
         String quantityStr = addPanel.returnQuantity().trim();
 
         if(name.isEmpty() || price.isEmpty() || description.isEmpty() || status.isEmpty() || quantityStr.isEmpty()) {
-            JOptionPane.showMessageDialog(addPanel, "All field must be filled up");
             return;
         }
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

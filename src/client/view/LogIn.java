@@ -35,24 +35,24 @@ public class LogIn extends JFrame{
 
         panelLogIn.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelTitle.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 28)); // NOI18N
+        labelTitle.setFont(new java.awt.Font("Sitka Display", Font.BOLD, 28));
         labelTitle.setText("Login");
 
-        labelUsername.setFont(new java.awt.Font("Sitka Display", Font.PLAIN, 17)); // NOI18N
+        labelUsername.setFont(new java.awt.Font("Sitka Display", Font.PLAIN, 17));
         labelUsername.setText("Username");
 
-        labelPass.setFont(new java.awt.Font("Sitka Display", Font.PLAIN, 17)); // NOI18N
+        labelPass.setFont(new java.awt.Font("Sitka Display", Font.PLAIN, 17));
         labelPass.setText("Password");
 
-        buttonLogIn.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
+        buttonLogIn.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         buttonLogIn.setText("Login");
 
-        buttonSignUp.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
+        buttonSignUp.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         buttonSignUp.setText("Sign Up");
 
         labelIPAdd.setText("IP :");
 
-        labelOR.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12)); // NOI18N
+        labelOR.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 12));
         labelOR.setText("Or");
 
         GroupLayout panelLogInLayout = new GroupLayout(panelLogIn);
@@ -159,23 +159,6 @@ public class LogIn extends JFrame{
         );
 
         pack();
-
-
-
-
-    }// </editor-fold>
-
-    private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {
-
-
-    }
-
-    private void buttonSignUpActionPerformed(java.awt.event.ActionEvent evt) {
-
-    }
-
-    private void textIPAddActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
 
     public String returnTxtUserName(){

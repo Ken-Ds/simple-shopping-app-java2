@@ -16,30 +16,6 @@
             }
           ]
         }
-      },
-      {
-        "id": "1",
-        "username": "miguel",
-        "password": "miguel",
-        "cart": {}
-      },
-      {
-        "id": "2",
-        "username": "newUser",
-        "password": "newPassword",
-        "cart": {}
-      },
-      {
-        "id": "3",
-        "username": "new",
-        "password": "k",
-        "cart": {}
-      },
-      {
-        "id": "4",
-        "username": "lee",
-        "password": "miguel",
-        "cart": {}
       }
     ]
   }

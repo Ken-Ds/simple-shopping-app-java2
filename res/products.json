@@ -15,6 +15,22 @@
         "price": "10",
         "description": "Looks like a gun",
         "status": "On Sale",
+        "quantity": 10
+      },
+      {
+        "id": "2",
+        "name": "dw",
+        "price": "2",
+        "description": "dw",
+        "status": "qw",
+        "quantity": 10
+      },
+      {
+        "id": "3",
+        "name": "wq",
+        "price": "2",
+        "description": "w",
+        "status": "2",
         "quantity": 0
       }
     ]

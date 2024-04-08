@@ -1,5 +1,4 @@
 package client.model;
-
 import client.view.LogIn;
 import common.Product;
 import common.SharedInterface;
@@ -10,7 +9,8 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
 public class Connect {
-    private static String ip = "localhost";
+    private static LogIn logIn = new LogIn();
+    private static String ip = logIn.returnIpAddress();
     public Connect(String add){
         ip = add;
     }

@@ -263,9 +263,14 @@ public class ParseGson {
             newAccount.addProperty("id", String.valueOf(accountArray.size()));
             newAccount.addProperty("username", username);
             newAccount.addProperty("password", password);
-            newAccount.add("cart", new JsonObject());
+
+
+            JsonObject cart = new JsonObject();
+            cart.add("product", new JsonArray());
+            newAccount.add("cart", cart);
 
             accountArray.add(newAccount);
+
             try (FileWriter writer = new FileWriter(accountsDir)) {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 gson.toJson(jsonObject, writer);
